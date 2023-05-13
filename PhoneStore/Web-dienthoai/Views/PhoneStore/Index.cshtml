@@ -1,0 +1,90 @@
+﻿@using Web_dienthoai.Models;
+@model IEnumerable<SanPham>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayout2.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<link rel="stylesheet" href="~/Content/Image.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+
+
+
+@*Iphone*@
+<h3 class="align: text-center" style="color: white; font-weight: bold;">iPhone</h3>
+<br />
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model.Where(id => id.MaTH == "IP"))
+    {
+        <div class="col">
+            <div class="card">
+                <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })">
+                    <img class="card-img-top my-image"
+                         src="~/Images/ProductView/@item.HinhMinhHoa" alt="Card image">
+                </a>
+                <div class="card-body ">
+                    <h4 class="card-title" style="text-align: center;">@item.TenSP</h4>
+                    @*  <p class="card-text" style="text-align: center;">@item.SanPham.MaSP</p>*@
+
+                  @*  <p class="card-text" style="text-align: center;">@item.SanPham.MaSP  </p>*@
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<hr />
+<br />
+
+@*Samsung*@
+<h3 class="align: text-center" style="color: white; font-weight: bold;">Samsung</h3>
+<br />
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model.Where(id => id.MaTH == "SS"))
+    {
+        <div class="col">
+            <div class="card">
+                <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })">
+                    <img class="card-img-top my-image"
+                         src="~/Images/ProductView/@item.HinhMinhHoa" alt="Card image">
+                </a>
+                <div class="card-body ">
+                    <h4 class="card-title style=" text-align: center;"">@item.TenSP</h4>
+                    <p class="card-text" style="text-align: center;">@item.MaSP</p>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<hr />
+<br />
+
+@*Xiaomi*@
+<h3 class="align: text-center" style="color: white; font-weight: bold;">Huawei</h3>
+<br />
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model.Where(id => id.MaTH == "HW"))
+    {
+        <div class="col">
+            <div class="card">
+                <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })">
+                    <img class="card-img-top my-image"
+                         src="~/Images/ProductView/@item.HinhMinhHoa" alt="Card image">
+                </a>
+                <div class="card-body ">
+                    <h4 class="card-title" style="text-align: center;">@item.TenSP</h4>
+                    <p class="card-text" style="text-align: center;">@item.MaSP</p>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

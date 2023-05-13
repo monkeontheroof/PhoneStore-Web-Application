@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Web_dienthoai.Models.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>QUẢN LÝ SẢN PHẨM</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới sản phẩm", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã sản phẩm
+        </th>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Hình minh họa
+        </th>
+        <th>
+            Tình trạng
+        </th>
+        <th>
+            Thương hiệu
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
+                @Html.DisplayFor(modelItem => item.MaSP)
+                </a>
+        </td>
+        <td>
+            <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
+                @Html.DisplayFor(modelItem => item.TenSP)
+                </a>
+        </td>
+        <td>
+            <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
+            <img src="~/Images/ProductView/@item.HinhMinhHoa" style="width: 100px"/>
+                </a>
+        </td>
+        <td>
+            <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
+                @Html.DisplayFor(modelItem => item.Tinhtrang)
+                </a>
+        </td>
+        <td>
+            <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
+                @Html.DisplayFor(modelItem => item.ThuongHieu.TenTH)
+                </a>
+        </td>
+        <td>
+            <a class="edit-button fa fa-pencil" href="~/SanPhams/Edit?id=@item.IdSP"></a>
+            <a class="delete-button fa fa-trash" href="~/SanPhams/Delete?id=@item.IdSP"></a>
+            @Html.ActionLink("Chi tiết", "Details", new { id = item.IdSP }) |
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,133 @@
+﻿@using Web_dienthoai.Models;
+@model IEnumerable<DonHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .left a{
+        text-decoration:none;
+    }
+</style>
+
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Admin")">Admin</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a class="active" href="@Url.Action("Index", "Admin")">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+        <a href="#" class="btn-download">
+            <i class='bx bxs-cloud-download'></i>
+            <span class="text">Download PDF</span>
+        </a>
+    </div>
+
+    <ul class="box-info">
+        <li>
+            <i class='bx bxs-calendar-check'></i>
+            <span class="text">
+                <h3>@ViewBag.Donhang</h3>
+                <p>Tổng đơn hàng</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bxs-group'></i>
+            <span class="text">
+                <h3>@ViewBag.Nhanvien</h3>
+                <p>Nhân viên</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bxs-dollar-circle'></i>
+            <span class="text">
+                <h3>$@ViewBag.Doanhthu</h3>
+                <p>Doanh thu</p>
+            </span>
+        </li>
+    </ul>
+
+
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Đơn hàng vừa đặt</h3>
+                <i class='bx bx-search'></i>
+                <i class='bx bx-filter'></i>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Khách hàng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Tình trạng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a href="/DonHangs/Details?id=@item.MaDH" style="text-decoration:none;">
+                                    <img src="img/people.png">
+                                    <p>@item.TenNguoiNhan</p>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/DonHangs/Details?id=@item.MaDH" style="text-decoration:none;">
+                                    @item.NgayDH
+                                    </a>
+                            </td>
+                            @if (item.TinhTrang == "Đã đặt hàng")
+                            {
+                                <td><span class="status pending">@item.TinhTrang</span></td>
+                            }
+                            else
+                            {
+                                <td><span class="status completed">@item.TinhTrang</span></td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="todo">
+            <div class="head">
+                <h3>Todos</h3>
+                <i class='bx bx-plus'></i>
+                <i class='bx bx-filter'></i>
+            </div>
+            <ul class="todo-list">
+                <li class="completed">
+                    <p>Todo List</p>
+                    <i class='bx bx-dots-vertical-rounded'></i>
+                </li>
+                <li class="completed">
+                    <p>Todo List</p>
+                    <i class='bx bx-dots-vertical-rounded'></i>
+                </li>
+                <li class="not-completed">
+                    <p>Todo List</p>
+                    <i class='bx bx-dots-vertical-rounded'></i>
+                </li>
+                <li class="completed">
+                    <p>Todo List</p>
+                    <i class='bx bx-dots-vertical-rounded'></i>
+                </li>
+                <li class="not-completed">
+                    <p>Todo List</p>
+                    <i class='bx bx-dots-vertical-rounded'></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+

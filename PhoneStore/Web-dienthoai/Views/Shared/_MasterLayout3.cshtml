@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+
+<html style="background-color: #ffffff; ">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/mystyle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <header>
+        @*Logo*@
+        <div class="head">
+            <div class="logo">
+                <a href="@Url.Action("Index", "PhoneStore")"> <img src="~/Images/home-image.png" /></a>
+            </div>
+
+            @*Navbar-item*@
+            @Html.Action("LayHangDT", "PhoneStore")
+
+
+            @*   <div class="search-cart">
+                <div class="search-sp">
+                    <i class="fa fa-search"></i>
+                </div>*@
+
+            <div class="ml-auto">
+                <i class="bi bi-bag">@Html.Action("GioHangPartial", "GioHang")</i>
+            </div>
+            @*
+                <div class="user-profile">
+                    <i class="fa fa-user"></i>
+                </div>
+            *@
+
+        </div>
+
+
+        <form class="form-search" onsubmit="return false;" style="display:none;">
+            <div class="click-search">
+                <i class="search"></i>
+                <input type="text" placeholder="Tìm kiếm sản phẩm" />
+                <i class="delSearch"></i>
+            </div>
+            <button type="submit" class="submit-search" style="display:none"></button>
+            <div class="sg-search"></div>
+        </form>
+
+
+
+    </header>
+
+
+    @*Image slideshow*@
+    <div id="div-main">
+        <div class="slideshow-container">
+
+            <div class="mySlides fade">
+                @* <div class="numbertext">1 / 3</div>*@
+                <img src="~/Images/slideshow-1.jpg" style="width:100%; height: 500px;">
+            </div>
+
+            <div class="mySlides fade">
+                @*  <div class="numbertext">2 / 3</div>*@
+                <img src="~/Images/iphoneslide.jpg" style="width: 100%; height: 500px;">
+            </div>
+
+            <div class="mySlides fade">
+                @* <div class="numbertext">3 / 3</div>*@
+                <img src="~/Images/iphoneslide2.jpg" style="width: 100%; height: 500px;">
+                @*  <img src="~/Images/Mac2880-800-1920x533-1.png" style="width: 100%; height: 500px;">*@
+            </div>
+
+        </div>
+
+        <br>
+
+        <div style="text-align:center">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <br /> <br />
+
+        @RenderBody()
+    </div>
+
+    @*<div id="div-footer">
+            Footer
+        </div>
+
+    *@
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/Image.css" />
+
+<h2 class="text-white" style="text-align: center; font-weight: bold;">ĐĂNG KÝ THÀNH VIÊN</h2>
+<br />
+<div class="row">
+    <div class="offset-md-1 col-md-10" style="padding-left:20%; padding-right:20%">
+        @using (Html.BeginForm("DangKy", "NguoiDung"))
+        {
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                <label class="text-white" for="name">Họ và Tên:</label>
+                @Html.TextBox("Hoten", null, new
+                {
+                    @class = "form-control",
+                    @id = "name",
+                    required = "required"
+                })
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="dangnhap">Tên đăng nhập:</label>
+                @Html.TextBox("Username", null, new
+                {
+                    @class = "form-control",
+                    @id = "dangnhap",
+                    required = "required"
+                })
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="matkhau">Mật khẩu:</label>
+                @Html.Password("Password", null, new
+                {
+                    @class = "form-control",
+                    @id = "matkhau",
+                    required = "required"
+                })
+            </div>
+
+            <div class="form-group">
+                <label class="text-white" for="email">Email:</label>
+                @Html.TextBox("Email", null, new
+                {
+                    @class = "form-control",
+                    @id = "email",
+                    type = "email",
+                    required = "required"
+                })
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="diachi">Địa chỉ:</label>
+                @Html.TextBox("DiaChi", null, new
+                {
+                    @class = "form-control",
+                    @id = "diachi"
+                })
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="dienthoai">Điện thoại:</label>
+                @Html.TextBox("SDT", null, new
+                {
+                    @class = "form-control",
+                    @id = "dienthoai",
+                    required = "required"
+                })
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="ngaysinh">Ngày sinh:</label>
+                @Html.Password("NgaySinh", null, new
+                {
+                    @class = "form-control",
+                    @id = "ngaysinh",
+                    type = "date",
+                    placeholder = "mm/dd/yyyy"
+                })
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="ngaysinh">Ngày sinh:</label>
+                @Html.DropDownList("GioiTinh", new List<SelectListItem>
+           {
+               new SelectListItem{ Text = "Nam", Value= "Nam"},
+               new SelectListItem{ Text = "Nữ", Value = "Nữ"},
+               new SelectListItem{ Text = "Khác", Value = "Khác"}
+           }, new
+           {
+               @class = "form-control",
+               @id = "gioitinh"
+           })
+            </div>
+            <button type="submit" class="btn btn-primary" style="display: block; margin: 0 auto; margin-top: 20px; text-align: center;">ĐĂNG KÝ</button>
+            <br />
+            <p style="text-align: center;">Đã có tài khoản ? <a href="@Url.Action("DangNhap", "NguoiDung")" style="color: red; text-decoration:none;">Đăng nhập</a></p>
+        }
+    </div>
+</div>

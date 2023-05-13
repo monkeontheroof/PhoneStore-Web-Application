@@ -1,0 +1,75 @@
+﻿@using Web_dienthoai.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<ThuongHieu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<h2 style="text-align:center;">QUẢN LÝ THƯƠNG HIỆU</h2>
+
+<p style="text-align:center;">
+    @Html.ActionLink("TẠO MỚI", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã thương hiệu
+        </th>
+        <th>
+            Tên thương hiệu
+        </th>
+        <th>
+            Tác vụ
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaTH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenTH)
+            </td>
+            <td>
+                @Html.ActionLink("Cập nhật", "Edit", new { id = item.MaTH }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaTH }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<!-- Thêm mã phân trang -->
+<br />
+<p style="text-align:center;">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+</p>
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+
+    .MenuTrang {
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+    }
+
+    td, th {
+        text-align: center;
+    }
+</style>
+<!-- Kết thúc -->

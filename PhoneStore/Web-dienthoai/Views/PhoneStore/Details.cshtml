@@ -1,0 +1,200 @@
+﻿@model Web_dienthoai.Models.DetailsView
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MasterLayout2.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<link rel="stylesheet" href="~/Content/Image.css" />
+<link rel="stylesheet" href="~/Content/mystyle.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<br />
+<h2 style="text-align:center; color: white">CHI TIẾT SẢN PHẨM</h2>
+<br />
+<hr />
+
+<div>
+
+
+
+    <div class="slideshow-container">
+
+        <div>
+            @foreach (var item in Model.HinhSP)
+            {
+                <div class="mySlides fade">
+                   @* <div class="numbertext">3 / 3</div>*@
+                    <img src="~/Images/Phones/@item.MaHinh" style="width: 100%; height: 500px; padding-left:15%; padding-right:15%">
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <div style="text-align:center">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    
+    </div>
+
+
+
+    <hr /> <hr />
+    <div style="padding-left: 100px; padding-right: 100px;">
+        <h3 style="color: white; text-align: center; ">@Model.SanPham.TenSP</h3>
+        <p style="color: white; padding-left: 200px; padding-right: 200px; text-align: justify ">
+            <span style="color: white; font-weight: bold; text-align: center; ">Mô tả:</span> @Model.SanPham.MoTaSP
+        </p>
+        <hr />
+        <h4 style="color: white;">THÔNG SỐ KỸ THUẬT:</h4>
+
+
+
+        <table class="white-text">
+
+            <tr>
+                <td>Mã sản phẩm: </td>
+                <td>@Model.SanPham.MaSP</td>
+                <td>Công nghệ màn hình: </td>
+                <td>@Model.ThongSo.CongNgheManHinh</td>
+            </tr>
+            <tr>
+                <td>Độ phân giải: </td>
+                <td>@Model.ThongSo.DoPhanGiai</td>
+                <td>Độ rộng màn hình: </td>
+                <td>@Model.ThongSo.ManHinhrong</td>
+            </tr>
+            <tr>
+                <td>Mặt kính cảm ứng: </td>
+                <td>@Model.ThongSo.MatKinhCamUng</td>
+                <td>Độ phân giải Camera sau: </td>
+                <td>@Model.ThongSo.DoPhanGiaiCamS</td>
+            </tr>
+            <tr>
+                <td>Chất lượng hình ảnh: </td>
+                <td>@Model.ThongSo.QuayPhim</td>
+                <td>Flash: </td>
+                <td>@Model.ThongSo.Flash</td>
+            </tr>
+            <tr>
+                <td>Tính năng Camera sau: </td>
+                <td>@Model.ThongSo.TinhNangCamS</td>
+                <td>Độ phân giải Camera trước: </td>
+                <td>@Model.ThongSo.DoPhanGiaiCamT</td>
+            </tr>
+            <tr>
+                <td>Tính năng Camera trước: </td>
+                <td>@Model.ThongSo.TinhNangCamT</td>
+                <td>Hệ điều hành: </td>
+                <td>@Model.ThongSo.HeDieuHanh</td>
+            </tr>
+            <tr>
+                <td>CPU: </td>
+                <td>@Model.ThongSo.CPU</td>
+                <td>Tốc độ CPU: </td>
+                <td>@Model.ThongSo.TocDoCPU</td>
+            </tr>
+            <tr>
+                <td>GPU: </td>
+                <td>@Model.ThongSo.GPU</td>
+                <td>RAM: </td>
+                <td>@Model.ThongSo.RAM</td>
+            </tr>
+            <tr>
+                <td>Dung lượng: </td>
+                <td>@Model.ThongSo.DungLuong</td>
+                <td>Dung lượng con: </td>
+                <td>@Model.ThongSo.DungLuongCon</td>
+            </tr>
+            <tr>
+                <td>Danh bạ: </td>
+                <td>@Model.ThongSo.DanhBa</td>
+                <td>Mạng: </td>
+                <td>@Model.ThongSo.Mang</td>
+            </tr>
+            <tr>
+                <td>Sim: </td>
+                <td>@Model.ThongSo.Sim</td>
+                <td>Wifi: </td>
+                <td>@Model.ThongSo.Wifi</td>
+            </tr>
+            <tr>
+                <td>GPS: </td>
+                <td>@Model.ThongSo.GPS</td>
+                <td>Bluetooh: </td>
+                <td>@Model.ThongSo.Bluetooth</td>
+            </tr>
+
+            <tr>
+                <td>Cổng sạc: </td>
+                <td>@Model.ThongSo.Sac</td>
+                <td>Jack: </td>
+                <td>@Model.ThongSo.Jack</td>
+            </tr>
+            <tr>
+                <td>Kết nối khác: </td>
+                <td>@Model.ThongSo.KetNoiKhac</td>
+                <td>Dung lượng pin: </td>
+                <td>@Model.ThongSo.DungLuongPin</td>
+            </tr>
+            <tr>
+                <td>Loại pin: </td>
+                <td>@Model.ThongSo.LoaiPin</td>
+                <td>Sạc tối đa: </td>
+                <td>@Model.ThongSo.SacToiDa</td>
+            </tr>
+            <tr>
+                <td>Công nghệ Pin: </td>
+                <td>@Model.ThongSo.CongNghePin</td>
+                <td>Bảo mật nâng cao: </td>
+                <td>@Model.ThongSo.BaoMatNC</td>
+            </tr>
+
+            <tr>
+                <td>Tính năng danh bạ: </td>
+                <td>@Model.ThongSo.TinhNangDB</td>
+                <td>Kháng nước bụi: </td>
+                <td>@Model.ThongSo.KhangNuocBui</td>
+            </tr>
+            <tr>
+                <td>Xem phim: </td>
+                <td>@Model.ThongSo.XemPhim</td>
+                <td>Nghe nhạc: </td>
+                <td> @Model.ThongSo.NgheNhac</td>
+            </tr>
+            <tr>
+                <td>Thiết kế: </td>
+                <td>@Model.ThongSo.ThietKe</td>
+                <td>Chất liệu: </td>
+                <td>@Model.ThongSo.ChatLieu</td>
+            </tr>
+            <tr>
+                <td>Kích thước: </td>
+                <td>@Model.ThongSo.KichThuoc</td>
+                <td>Thời điểm ra mắt: </td>
+                <td>@Model.ThongSo.ThoiDiemRaMat</td>
+            </tr>
+
+        </table>
+
+        <hr /><hr />
+
+    </div>
+
+    <p class="price" style="text-align: center;">
+        <span style="color: red; background-color: white; font-weight: bold;  font-size: 40px; border: 2px solid white; padding: 5px; padding-bottom: 10px; ">Giá bán: @Model.SanPham.Gia VNĐ</span>
+    </p>
+
+    <hr /><hr />
+
+    <a class="btn btn-primary" style=" margin-left: 47%; padding:20px; margin-bottom:2%; font-weight:bold; justify-content: center; align-items: center;" href="@Url.Action("ThemSP", "GioHang", new { IdSP = Model.SanPham.IdSP })"> Đặt mua </a>
+</div>
