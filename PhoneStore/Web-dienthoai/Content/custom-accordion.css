@@ -1,0 +1,63 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.thongso {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #dbdbdb;
+}
+.accordion {
+    max-width: 530px;
+    width: 100%;
+    margin-top: 0 15px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.accordion .accordion-content{
+    margin: 10px 0;
+    border-radius: 4px;
+    background: #FFF;
+    border: 1px solid #828282;
+    overflow: hidden;
+}
+
+.accordion-content header{
+    display: flex;
+    padding: 0 15px;
+    min-height: 50px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.accordion-content header .title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.accordion-content header i {
+    font-size: 15px;
+    color: #333;
+}
+
+.accordion-content .description {
+    height: 0;
+    font-size: 12px;
+    color: #333;
+    font-weight: 400;
+    padding: 0 15px;
+    transition: all 0.2s linear;
+}

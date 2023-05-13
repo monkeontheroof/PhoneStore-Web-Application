@@ -100,7 +100,7 @@ namespace Web_dienthoai.Controllers
             {
                 db.Entry(thongSo).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "SanPhams", new { id = thongSo.IdSP});
             }
             ViewBag.IdSP = new SelectList(db.SanPhams, "IdSP", "MaSP", thongSo.IdSP);
             return View(thongSo);
