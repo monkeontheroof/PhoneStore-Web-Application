@@ -1,0 +1,59 @@
+﻿@model Web_dienthoai.Models.ChiTietDH
+
+@{
+    ViewBag.Title = "CHI TIẾT ĐƠN HÀNG";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChiTietDH</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dongia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dongia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Thanhtien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thanhtien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonHang.TenNguoiNhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonHang.TenNguoiNhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SanPham.MaSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SanPham.MaSP)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -5,15 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="db_PhoneStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="Useradmin" />
-          </Key>
-          <Property Name="Useradmin" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Passadmin" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
-          <Property Name="VaiTro" Type="varchar" MaxLength="30" />
-        </EntityType>
         <EntityType Name="ChiTietDH">
           <Key>
             <PropertyRef Name="MaDH" />
@@ -83,6 +74,7 @@
           <Property Name="DiaChi" Type="nvarchar" MaxLength="100" />
           <Property Name="NgaySinh" Type="smalldatetime" />
           <Property Name="ChucVu" Type="char" MaxLength="2" />
+          <Property Name="Anhdaidien" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -96,6 +88,14 @@
           <Property Name="HinhMinhHoa" Type="nvarchar" MaxLength="50" />
           <Property Name="Tinhtrang" Type="ntext" />
           <Property Name="MaTH" Type="char" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaiKhoanNV">
+          <Key>
+            <PropertyRef Name="MaNV" />
+          </Key>
+          <Property Name="MaNV" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="30" />
+          <Property Name="Password" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="ThongSo">
           <Key>
@@ -233,6 +233,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TaikhoanNV_Nhanvien">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+          <End Role="TaiKhoanNV" Type="Self.TaiKhoanNV" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="TaiKhoanNV">
+              <PropertyRef Name="MaNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ThongSo_SanPham">
           <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
           <End Role="ThongSo" Type="Self.ThongSo" Multiplicity="0..1" />
@@ -246,7 +258,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="db_PhoneStoreModelStoreContainer">
-          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietDH" EntityType="Self.ChiTietDH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HinhSP" EntityType="Self.HinhSP" Schema="dbo" store:Type="Tables" />
@@ -254,6 +265,7 @@
           <EntitySet Name="Mau" EntityType="Self.Mau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiKhoanNV" EntityType="Self.TaiKhoanNV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongSo" EntityType="Self.ThongSo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThuongHieu" EntityType="Self.ThuongHieu" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__DonHang__MaKH__5070F446" Association="Self.FK__DonHang__MaKH__5070F446">
@@ -284,6 +296,10 @@
             <End Role="SanPham" EntitySet="SanPham" />
             <End Role="Mau" EntitySet="Mau" />
           </AssociationSet>
+          <AssociationSet Name="FK_TaikhoanNV_Nhanvien" Association="Self.FK_TaikhoanNV_Nhanvien">
+            <End Role="NhanVien" EntitySet="NhanVien" />
+            <End Role="TaiKhoanNV" EntitySet="TaiKhoanNV" />
+          </AssociationSet>
           <AssociationSet Name="FK_ThongSo_SanPham" Association="Self.FK_ThongSo_SanPham">
             <End Role="SanPham" EntitySet="SanPham" />
             <End Role="ThongSo" EntitySet="ThongSo" />
@@ -294,15 +310,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db_PhoneStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="Useradmin" />
-          </Key>
-          <Property Name="Useradmin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Passadmin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="VaiTro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="ChiTietDH">
           <Key>
             <PropertyRef Name="MaDH" />
@@ -381,7 +388,9 @@
           <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NgaySinh" Type="DateTime" Precision="0" />
           <Property Name="ChucVu" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Anhdaidien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DonHangs" Relationship="Self.FK__DonHang__MaNV__5165187F" FromRole="NhanVien" ToRole="DonHang" />
+          <NavigationProperty Name="TaiKhoanNV" Relationship="Self.FK_TaikhoanNV_Nhanvien" FromRole="NhanVien" ToRole="TaiKhoanNV" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -399,6 +408,15 @@
           <NavigationProperty Name="Maus" Relationship="Self.FK_Mau_SanPham" FromRole="SanPham" ToRole="Mau" />
           <NavigationProperty Name="ThuongHieu" Relationship="Self.FK__SanPham__MaTH__5441852A" FromRole="SanPham" ToRole="ThuongHieu" />
           <NavigationProperty Name="ThongSo" Relationship="Self.FK_ThongSo_SanPham" FromRole="SanPham" ToRole="ThongSo" />
+        </EntityType>
+        <EntityType Name="TaiKhoanNV">
+          <Key>
+            <PropertyRef Name="MaNV" />
+          </Key>
+          <Property Name="MaNV" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="NhanVien" Relationship="Self.FK_TaikhoanNV_Nhanvien" FromRole="TaiKhoanNV" ToRole="NhanVien" />
         </EntityType>
         <EntityType Name="ThongSo">
           <Key>
@@ -526,6 +544,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TaikhoanNV_Nhanvien">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+          <End Role="TaiKhoanNV" Type="Self.TaiKhoanNV" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="TaiKhoanNV">
+              <PropertyRef Name="MaNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__SanPham__MaTH__5441852A">
           <End Role="ThuongHieu" Type="Self.ThuongHieu" Multiplicity="1" />
           <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
@@ -551,7 +581,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="QLDienThoaiEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="ChiTietDHs" EntityType="Self.ChiTietDH" />
           <EntitySet Name="DonHangs" EntityType="Self.DonHang" />
           <EntitySet Name="HinhSPs" EntityType="Self.HinhSP" />
@@ -559,6 +588,7 @@
           <EntitySet Name="Maus" EntityType="Self.Mau" />
           <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
           <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+          <EntitySet Name="TaiKhoanNVs" EntityType="Self.TaiKhoanNV" />
           <EntitySet Name="ThongSoes" EntityType="Self.ThongSo" />
           <EntitySet Name="ThuongHieux" EntityType="Self.ThuongHieu" />
           <AssociationSet Name="FK_ChiTietDH_DonHang" Association="Self.FK_ChiTietDH_DonHang">
@@ -585,6 +615,10 @@
             <End Role="SanPham" EntitySet="SanPhams" />
             <End Role="Mau" EntitySet="Maus" />
           </AssociationSet>
+          <AssociationSet Name="FK_TaikhoanNV_Nhanvien" Association="Self.FK_TaikhoanNV_Nhanvien">
+            <End Role="NhanVien" EntitySet="NhanViens" />
+            <End Role="TaiKhoanNV" EntitySet="TaiKhoanNVs" />
+          </AssociationSet>
           <AssociationSet Name="FK__SanPham__MaTH__5441852A" Association="Self.FK__SanPham__MaTH__5441852A">
             <End Role="ThuongHieu" EntitySet="ThuongHieux" />
             <End Role="SanPham" EntitySet="SanPhams" />
@@ -600,16 +634,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="db_PhoneStoreModelStoreContainer" CdmEntityContainer="QLDienThoaiEntities">
-          <EntitySetMapping Name="Admins">
-            <EntityTypeMapping TypeName="db_PhoneStoreModel.Admin">
-              <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="Useradmin" ColumnName="Useradmin" />
-                <ScalarProperty Name="Passadmin" ColumnName="Passadmin" />
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="VaiTro" ColumnName="VaiTro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ChiTietDHs">
             <EntityTypeMapping TypeName="db_PhoneStoreModel.ChiTietDH">
               <MappingFragment StoreEntitySet="ChiTietDH">
@@ -682,6 +706,7 @@
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
                 <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
                 <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+                <ScalarProperty Name="Anhdaidien" ColumnName="Anhdaidien" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -696,6 +721,15 @@
                 <ScalarProperty Name="HinhMinhHoa" ColumnName="HinhMinhHoa" />
                 <ScalarProperty Name="Tinhtrang" ColumnName="Tinhtrang" />
                 <ScalarProperty Name="MaTH" ColumnName="MaTH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaiKhoanNVs">
+            <EntityTypeMapping TypeName="db_PhoneStoreModel.TaiKhoanNV">
+              <MappingFragment StoreEntitySet="TaiKhoanNV">
+                <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

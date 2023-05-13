@@ -16,16 +16,34 @@ namespace Web_dienthoai.Controllers
         private QLDienThoaiEntities db = new QLDienThoaiEntities();
 
         // GET: ThuongHieux
-        public ActionResult Index(int? page)
+        public ActionResult Index(string currentFilter, string s, int? page)
         {
             //Admin Session Check
             if (Session["Admin"] == null)
                 return RedirectToAction("Login", "Admin");
 
 
-            var thuongHieu = db.ThuongHieux.ToList();
+            var thuongHieu = from l in db.ThuongHieux 
+                             select l;
             int pageSize = 7;
             int pageNum = (page ?? 1);
+
+            if (s != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                s = currentFilter;
+            }
+
+            if (!String.IsNullOrEmpty(s))
+            {
+                thuongHieu = thuongHieu.Where(i => i.MaTH.Contains(s) || i.TenTH.Contains(s));
+            }
+            ViewBag.CurrentFilter = s;
+            thuongHieu = thuongHieu.OrderBy(id => id.TenTH);
+
             return View(thuongHieu.ToPagedList(pageNum, pageSize));
         }
 

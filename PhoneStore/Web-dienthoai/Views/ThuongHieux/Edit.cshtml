@@ -5,42 +5,43 @@
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
-<h2>Cập nhật</h2>
+<div class="container" style="background-image: url('../../Images/library-background-form.jpg');">
+    <div class="inner">
+        @using (Html.BeginForm("Edit", "NhanViens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <h3>Cập nhập thông tin Nhân viên</h3>
+            <div class="form-group">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaTH)
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4 >Thương hiệu</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.MaTH)
+                <div class="form-wrapper">
+                    @Html.LabelFor(model => model.MaTH, "Mã thương hiệu", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.MaTH)
+                    </div>
+                </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.MaTH, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.MaTH, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MaTH, "", new { @class = "text-danger" })
-        </div>
+                <div class="form-wrapper">
+                    @Html.LabelFor(model => model.TenTH, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TenTH, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenTH, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input style="margin-left:-15px;background-color:Green" type="submit" value="Lưu" class=" button1" />
+                </div>
+            </div>
+        }
+
+        <div style="margin-left:45px;">
+            <a style="color: #0a3a5a" href="~/ThuongHieux/Index">Quay lại</a>
+        </div>  
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.TenTH, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TenTH, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TenTH, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="LƯU" class="btn btn-success" />
-        </div>
-    </div>
-</div>
-}
-
-<div>
-    @Html.ActionLink("Quay về trang chủ", "Index", null, new { @class = "btn btn-secondary" })
 </div>

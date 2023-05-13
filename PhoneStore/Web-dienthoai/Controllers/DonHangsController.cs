@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -15,15 +16,72 @@ namespace Web_dienthoai.Controllers
         private QLDienThoaiEntities db = new QLDienThoaiEntities();
 
         // GET: DonHangs
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, string s, int? page)
         {
-            var donHangs = db.DonHangs.Include(d => d.KhachHang).Include(d => d.NhanVien);
-            return View(donHangs.ToList());
+            if (Session["Admin"] == null)
+                return RedirectToAction("Login", "Admin");
+
+
+            int pageSize = 7;
+            int pageNum = (page ?? 1);
+
+            if (s != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                s = currentFilter;
+            }
+
+            var donHangs = from l in db.DonHangs
+                           select l;
+            donHangs = donHangs.Where(i => i.TinhTrang.Contains("Đang xử lý"));
+            if (!String.IsNullOrEmpty(s))
+            {
+                donHangs = donHangs.Where(id => id.MaDH.ToString().Contains(s) || id.TenNguoiNhan.Contains(s) || id.NgayDH.ToString().Contains(s) || id.SDTnhan.ToString().Contains(s));
+            }
+
+            donHangs = donHangs.OrderBy(i => i.NgayDH);
+            return View(donHangs.ToPagedList(pageNum, pageSize));
+        }
+
+        public ActionResult DonHangDaGiao(string currentFilter, string s, int? page)
+        {
+            if (Session["Admin"] == null)
+                return RedirectToAction("Login", "Admin");
+
+
+            int pageSize = 7;
+            int pageNum = (page ?? 1);
+
+            if (s != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                s = currentFilter;
+            }
+
+            var donHangs = from l in db.DonHangs
+                           select l;
+            donHangs = donHangs.Where(i => i.TinhTrang.Contains("Đã giao"));
+            if (!String.IsNullOrEmpty(s))
+            {
+                donHangs = donHangs.Where(id => id.MaDH.ToString().Contains(s) || id.TenNguoiNhan.Contains(s) || id.NgayDH.ToString().Contains(s) || id.SDTnhan.ToString().Contains(s));
+            }
+
+            donHangs = donHangs.OrderBy(i => i.NgayDH);
+            return View(donHangs.ToPagedList(pageNum, pageSize));
         }
 
         // GET: DonHangs/Details/5
         public ActionResult Details(long? id)
         {
+            if (Session["Admin"] == null)
+                return RedirectToAction("Login", "Admin");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +97,9 @@ namespace Web_dienthoai.Controllers
         // GET: DonHangs/Create
         public ActionResult Create()
         {
+            if (Session["Admin"] == null)
+                return RedirectToAction("Login", "Admin");
+
             ViewBag.MaKH = new SelectList(db.KhachHangs, "MaKH", "Hoten");
             ViewBag.MaNV = new SelectList(db.NhanViens, "MaNV", "Hoten");
             return View();
@@ -66,6 +127,9 @@ namespace Web_dienthoai.Controllers
         // GET: DonHangs/Edit/5
         public ActionResult Edit(long? id)
         {
+            if (Session["Admin"] == null)
+                return RedirectToAction("Login", "Admin");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -101,6 +165,9 @@ namespace Web_dienthoai.Controllers
         // GET: DonHangs/Delete/5
         public ActionResult Delete(long? id)
         {
+            if (Session["Admin"] == null)
+                return RedirectToAction("Login", "Admin");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

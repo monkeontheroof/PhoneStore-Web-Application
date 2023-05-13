@@ -25,7 +25,6 @@ namespace Web_dienthoai.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<ChiTietDH> ChiTietDHs { get; set; }
         public virtual DbSet<DonHang> DonHangs { get; set; }
         public virtual DbSet<HinhSP> HinhSPs { get; set; }
@@ -33,6 +32,7 @@ namespace Web_dienthoai.Models
         public virtual DbSet<Mau> Maus { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
+        public virtual DbSet<TaiKhoanNV> TaiKhoanNVs { get; set; }
         public virtual DbSet<ThongSo> ThongSoes { get; set; }
         public virtual DbSet<ThuongHieu> ThuongHieux { get; set; }
     }

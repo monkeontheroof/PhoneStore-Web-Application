@@ -20,6 +20,7 @@ namespace Web_dienthoai.Controllers
 
             ViewBag.Donhang = db.DonHangs.Count();
             ViewBag.Nhanvien = db.NhanViens.Count();
+            ViewBag.Sanpham = db.SanPhams.Count();
             var doanhthu = from l in db.ChiTietDHs
                            select l;
             ViewBag.Doanhthu = db.DonHangs.Sum(id => id.TriGia);
@@ -35,19 +36,19 @@ namespace Web_dienthoai.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Admin admin)
+        public ActionResult Login(TaiKhoanNV admin)
         {
             if (ModelState.IsValid)
             {
-                if (string.IsNullOrEmpty(admin.Useradmin))
+                if (string.IsNullOrEmpty(admin.Username))
                     ModelState.AddModelError(string.Empty, "Vui lòng nhập Username");
 
-                if (string.IsNullOrEmpty(admin.Passadmin))
+                if (string.IsNullOrEmpty(admin.Password))
                     ModelState.AddModelError(string.Empty, "Vui lòng nhập mật khẩu");
 
 
                 //Kiểm tra có tồn tại Admin dưới DB hay chưa
-                var adminDB = db.Admins.FirstOrDefault(ad => ad.Useradmin == admin.Useradmin && ad.Passadmin == admin.Passadmin);
+                var adminDB = db.TaiKhoanNVs.FirstOrDefault(ad => ad.Username == admin.Username && ad.Password == admin.Password);
                 if (adminDB == null)
                 {
                     ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không đúng!";
@@ -55,6 +56,7 @@ namespace Web_dienthoai.Controllers
                 else
                 {
                     Session["Admin"] = adminDB;
+                    Session["Username"] = adminDB.Username;
                     ViewBag.ThongBao = "Đăng nhập thành công!";
                     return RedirectToAction("Index", "Admin");
                 }
@@ -76,8 +78,8 @@ namespace Web_dienthoai.Controllers
             if (Session["Admin"] == null)
                 return RedirectToAction("Login", "Admin");
 
-            Admin ad = Session["Admin"] as Admin;
-            var userad = db.Admins.FirstOrDefault(un => un.Useradmin == ad.Useradmin);
+            TaiKhoanNV ad = Session["Admin"] as TaiKhoanNV;
+            var userad = db.NhanViens.FirstOrDefault(un => un.TaiKhoanNV.Username == ad.Username);
 
             return View(userad);
         }

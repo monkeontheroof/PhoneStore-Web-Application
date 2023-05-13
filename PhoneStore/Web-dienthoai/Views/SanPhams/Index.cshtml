@@ -1,68 +1,121 @@
-﻿@model IEnumerable<Web_dienthoai.Models.SanPham>
+﻿@using Web_dienthoai.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SanPham>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "QUẢN LÝ SẢN PHẨM";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
-<h2>QUẢN LÝ SẢN PHẨM</h2>
+<style>
 
-<p>
-    @Html.ActionLink("Thêm mới sản phẩm", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Mã sản phẩm
-        </th>
-        <th>
-            Tên sản phẩm
-        </th>
-        <th>
-            Hình minh họa
-        </th>
-        <th>
-            Tình trạng
-        </th>
-        <th>
-            Thương hiệu
-        </th>
-        <th></th>
-    </tr>
+    .delete-button {
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        text-decoration: none;
+    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
-                @Html.DisplayFor(modelItem => item.MaSP)
-                </a>
-        </td>
-        <td>
-            <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
-                @Html.DisplayFor(modelItem => item.TenSP)
-                </a>
-        </td>
-        <td>
-            <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
-            <img src="~/Images/ProductView/@item.HinhMinhHoa" style="width: 100px"/>
-                </a>
-        </td>
-        <td>
-            <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
-                @Html.DisplayFor(modelItem => item.Tinhtrang)
-                </a>
-        </td>
-        <td>
-            <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
-                @Html.DisplayFor(modelItem => item.ThuongHieu.TenTH)
-                </a>
-        </td>
-        <td>
-            <a class="edit-button fa fa-pencil" href="~/SanPhams/Edit?id=@item.IdSP"></a>
-            <a class="delete-button fa fa-trash" href="~/SanPhams/Delete?id=@item.IdSP"></a>
-            @Html.ActionLink("Chi tiết", "Details", new { id = item.IdSP }) |
-        </td>
-    </tr>
-}
+    .edit-button {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        text-decoration: none;
+    }
+</style>
 
-</table>
+
+<div class="row mt-4">
+    <div class="col-6">
+        @Html.ActionLink("THÊM SẢN PHẨM MỚI", "Create", null, new { @class = "btn btn-success" })
+    </div>
+
+    <div class="col-6">
+        <form style="width: 100%; padding-left: 250px;" action="/SanPhams/Index" method="get">
+            <div class="form-group">
+                <input class="form-control" id="search" type="text" name="s" placeholder="Tìm kiếm sản phẩm" value="" />
+            </div>
+        </form>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                Mã sản phẩm
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Hình minh họa
+            </th>
+            <th>
+                Tình trạng
+            </th>
+            <th>
+                Thương hiệu
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
+                        @Html.DisplayFor(modelItem => item.MaSP)
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
+                        @Html.DisplayFor(modelItem => item.TenSP)
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
+                        <img src="~/Images/ProductView/@item.HinhMinhHoa" style="width: 100px" />
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
+                        @Html.DisplayFor(modelItem => item.Tinhtrang)
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/SanPhams/Details?id=@item.IdSP">
+                        @Html.DisplayFor(modelItem => item.ThuongHieu.TenTH)
+                    </a>
+                </td>
+                <td>
+                    <a class="edit-button fa fa-pencil" href="~/SanPhams/Details?id=@item.IdSP"></a>
+                    <a class="delete-button fa fa-trash" href="~/SanPhams/Delete?id=@item.IdSP"></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<!-- Thêm mã phân trang -->
+<br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+            background-color: lightblue;
+            color: white;
+            padding: 10px 20px;
+            margin: 2px 5px;
+            border-radius: 5px;
+            border: none;
+            text-decoration: none;
+        }
+    </style>
+    <!-- Kết thúc -->

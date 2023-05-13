@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -16,13 +17,36 @@ namespace Web_dienthoai.Controllers
         private QLDienThoaiEntities db = new QLDienThoaiEntities();
 
         // GET: SanPhams
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, string s, int? page)
         {
             if (Session["Admin"] == null)
                 return RedirectToAction("Login", "Admin");
 
-            var sanPhams = db.SanPhams.Include(s => s.ThuongHieu).Include(s => s.ThongSo);
-            return View(sanPhams.ToList());
+
+            int pageSize = 7;
+            int pageNum = (page ?? 1);
+
+            if (s != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                s = currentFilter;
+            }
+
+            var sanPhams = from l in db.SanPhams
+                           select l;
+
+            if (!String.IsNullOrEmpty(s))
+            {
+                sanPhams = sanPhams.Where(i => i.MaSP.Contains(s) || i.ThuongHieu.TenTH.Contains(s) || i.TenSP.Contains(s));
+            }
+            ViewBag.CurrentFilter = s;
+
+            sanPhams = sanPhams.OrderBy(id => id.MaTH);
+
+            return View(sanPhams.ToPagedList(pageNum, pageSize));
         }
 
         // GET: SanPhams/Details/5

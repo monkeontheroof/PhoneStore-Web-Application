@@ -12,11 +12,12 @@ namespace Web_dienthoai.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Admin
+    public partial class TaiKhoanNV
     {
-        public string Useradmin { get; set; }
-        public string Passadmin { get; set; }
-        public string HoTen { get; set; }
-        public string VaiTro { get; set; }
+        public int MaNV { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+    
+        public virtual NhanVien NhanVien { get; set; }
     }
 }

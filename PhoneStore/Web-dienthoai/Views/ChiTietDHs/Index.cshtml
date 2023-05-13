@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Web_dienthoai.Models.ChiTietDH>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dongia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Thanhtien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonHang.TenNguoiNhan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.MaSP)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dongia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Thanhtien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DonHang.TenNguoiNhan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SanPham.MaSP)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
