@@ -1,88 +1,122 @@
-﻿@model IEnumerable<Web_dienthoai.Models.DonHang>
+﻿@using Web_dienthoai.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<DonHang>
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
+<style>
 
-<h2>Index</h2>
+    .delete-button {
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        text-decoration: none;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenNguoiNhan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SDTnhan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DiaChiNhan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TriGia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TinhTrang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayDH)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HTThanhToan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HTGiaohang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KhachHang.Hoten)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NhanVien.Hoten)
-        </th>
-        <th></th>
-    </tr>
+    .edit-button {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        text-decoration: none;
+    }
+</style>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenNguoiNhan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SDTnhan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaChiNhan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TriGia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TinhTrang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayDH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HTThanhToan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HTGiaohang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KhachHang.Hoten)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NhanVien.Hoten)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaDH }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaDH }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaDH })
-        </td>
-    </tr>
-}
+<div class="row mt-4">
+    <div class="col-6">
+        @Html.ActionLink("THÊM ĐƠN HÀNG", "Create", null, new { @class = "btn btn-success" })
+    </div>
+    <div class="col-6">
+        <form style="width: 100%; padding-left: 250px;" action="/DonHangs/Index" method="get">
+            <div class="form-group">
+                <input class="form-control" id="search" type="text" name="s" placeholder="Tìm kiếm đơn hàng" value="" />
+            </div>
+        </form>
+    </div>
 
-</table>
+    <table class="table">
+        <tr>
+            <th>
+                Mã đơn hàng
+            </th>
+            <th>
+                Tên người nhận
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Ngày đặt hàng
+            </th>
+            <th>
+                Tình trạng
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/DonHangs/Details?id=@item.MaDH">
+                        @Html.DisplayFor(modelItem => item.MaDH)
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/DonHangs/Details?id=@item.MaDH">
+                        @Html.DisplayFor(modelItem => item.TenNguoiNhan)
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/DonHangs/Details?id=@item.MaDH">
+                        @Html.DisplayFor(modelItem => item.SDTnhan)
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/DonHangs/Details?id=@item.MaDH">
+                        @Html.DisplayFor(modelItem => item.NgayDH)
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/DonHangs/Details?id=@item.MaDH">
+                        @Html.DisplayFor(modelItem => item.TinhTrang)
+                    </a>
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.MaDH }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.MaDH }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MaDH })*@
+                    <a class="edit-button fa fa-pencil" href="~/DonHangs/Details?id=@item.MaDH"></a>
+                    <a class="delete-button fa fa-trash" href="~/DonHangs/Delete?id=@item.MaDH"></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+
+<!-- Thêm mã phân trang -->
+<br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+            background-color: lightblue;
+            color: white;
+            padding: 10px 20px;
+            margin: 2px 5px;
+            border-radius: 5px;
+            border: none;
+            text-decoration: none;
+        }
+    </style>
+    <!-- Kết thúc -->

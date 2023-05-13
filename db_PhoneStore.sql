@@ -9,14 +9,6 @@ GO
 
 
 -------------------TẠO BẢNG-----------------
---Admin
-create table Admin(
-	Useradmin varchar(30) PRIMARY KEY,
-	Passadmin varchar (30) NOT NULL,
-	HoTen nvarchar(50),
-	VaiTro varchar(30)
-)
-GO
 
 --ThuongHieu
 CREATE TABLE ThuongHieu
@@ -81,10 +73,17 @@ CREATE TABLE NhanVien(
 	GioiTinh nvarchar(3) check (GioiTinh in(N'Nam',N'Nữ')),
 	DiaChi nvarchar(100),
 	NgaySinh smalldatetime,
-	ChucVu char(2)
+	ChucVu char(2),
+	Anhdaidien nvarchar(50)
 )
 GO
 
+CREATE TABLE TaiKhoanNV(
+	MaNV int primary key,
+	Username varchar(30),
+	Password varchar (30) NOT NULL
+)
+GO
 --DonHang
 CREATE TABLE DonHang
 (
@@ -209,6 +208,8 @@ ALTER TABLE [dbo].[NhanVien]  WITH CHECK ADD CHECK  (([GioiTinh]=N'Nữ' OR [Gio
 GO
 ALTER TABLE [dbo].[SanPham]  WITH CHECK ADD CHECK  (([gia]>=(0)))
 GO
+ALTER TABLE TaiKhoanNV WITH CHECK ADD CONSTRAINT FK_TaikhoanNV_Nhanvien FOREIGN KEY(MaNV) REFERENCES NhanVien(MaNV)
+GO
 
 
 -------------------------------
@@ -230,5 +231,10 @@ values ('XM','XIAO MI')
 
 -----------KHACH HANG------------
 
-INSERT INTO ADMIN VALUES ('admin', 'Admin@123', N'Quản trị hệ thống', 'ADMIN')
+insert into NhanVien(Hoten, ChucVu)
+values('test', 'AD');
+
+insert into TaiKhoanNV values(1, 'admin', 'Admin@123');
+
+select * from TaiKhoanNV
 

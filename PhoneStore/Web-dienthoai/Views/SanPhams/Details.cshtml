@@ -2,76 +2,76 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
+
+<style>
+
+    .delete-button {
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        text-decoration: none;
+    }
+
+    .edit-button {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        text-decoration: none;
+    }
+</style>
 
 <h2 style="text-align: center;">THÔNG TIN CHI TIẾT</h2>
 
-<div>
-    <h4>
-        SẢN PHẨM
-        <span><a class="edit-button fa fa-pencil" href="~/SanPhams/Edit?id=@Model.IdSP"></a></span>
-    </h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MaSP)
-        </dt>
+<div class="wrapper">
+    <div class="profile-card js-profile-card">
+        <div class="profile-card__img">
+            <img src="~/images/ProductView/@Model.HinhMinhHoa" alt="profile card">
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaSP)
-        </dd>
+        <div class="profile-card__cnt js-profile-cnt">
+            <div class="profile-card__name">@Html.DisplayFor(model => model.TenSP)</div>
+            <div class="profile-card__txt">Mã sản phẩm: <strong>@Html.DisplayFor(model => model.MaSP)</strong> </div>
+            <div class="profile-card__txt">Thương hiệu: <strong>@Html.DisplayFor(model => model.ThuongHieu.TenTH)</strong> </div>
+            <div class="profile-card__txt">Giá: <strong>@Html.DisplayFor(model => model.Gia)</strong> </div>
+            <div class="profile-card__txt">Tình trạng: <strong>@Html.DisplayFor(model => model.Tinhtrang)</strong> </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TenSP)
-        </dt>
+            <div class="profile-card-ctr">
+                @if (Session["Admin"] != null)
+                {
+                    <a class="profile-card__button button--orange" href="~/SanPhams/Edit?id=@Model.IdSP">Chỉnh sửa</a>
+                }
+                <a class="profile-card__button button--blue" href="~/SanPhams/Index">Trở về</a>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenSP)
-        </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MoTaSP)
-        </dt>
+        <div class="profile-card-message js-message">
+            <form class="profile-card-form">
+                <div class="profile-card-form__container">
+                    <textarea placeholder="Say something..."></textarea>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.MoTaSP)
-        </dd>
+                <div class="profile-card-form__bottom">
+                    <button class="profile-card__button button--blue js-message-close">
+                    </button>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gia)
-        </dt>
+                    <button class="profile-card__button button--gray js-message-close">
+                        Cancel
+                    </button>
+                </div>
+            </form>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gia)
-        </dd>
+            <div class="profile-card__overlay js-message-close"></div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HinhMinhHoa)
-        </dt>
+    </div>
 
-        <dd>
-            <img src="~/Images/ProductView/@Model.HinhMinhHoa" style="width: 35%"/>
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tinhtrang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tinhtrang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ThuongHieu.TenTH)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ThuongHieu.TenTH)
-        </dd>
-
-
-    </dl>
 </div>
 
 <br />

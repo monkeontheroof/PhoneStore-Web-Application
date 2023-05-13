@@ -1,0 +1,123 @@
+﻿@using Web_dienthoai.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<KhachHang>
+@{
+    ViewBag.Title = "QUẢN LÝ KHÁCH HÀNG";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<style>
+
+    .delete-button {
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        text-decoration: none;
+    }
+
+    .edit-button {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        text-decoration: none;
+    }
+</style>
+
+<div class="row mt-4">
+    <div class="col-6">
+        @Html.ActionLink("THÊM KHÁCH HÀNG", "Create", null, new { @class = "btn btn-success" })
+    </div>
+    <div class="col-6">
+        <form style="width: 100%; padding-left: 250px;" action="/KhachHangs/Index" method="get">
+            <div class="form-group">
+                <input class="form-control" id="search" type="text" name="s" placeholder="Tìm kiếm khách hàng" value="" />
+            </div>
+        </form>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                Mã khách hàng
+            </th>
+            <th>
+                Họ tên
+            </th>
+            <th>
+                Tài khoản
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Ngày sinh
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/KhachHangs/Details?id=@item.MaKH">
+                        @Html.DisplayFor(modelItem => item.MaKH)
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/KhachHangs/Details?id=@item.MaKH">
+                        @Html.DisplayFor(modelItem => item.Hoten)
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/KhachHangs/Details?id=@item.MaKH">
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/KhachHangs/Details?id=@item.MaKH">
+                        @Html.DisplayFor(modelItem => item.SDT)
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;" href="~/KhachHangs/Details?id=@item.MaKH">
+                        @Html.DisplayFor(modelItem => item.NgaySinh)
+                    </a>
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.MaKH }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.MaKH }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MaKH })*@
+                    <a class="edit-button fa fa-pencil" href="~/KhachHangs/Details?id=@item.MaKH"></a>
+                    <a class="delete-button fa fa-trash" href="~/KhachHangs/Delete?id=@item.MaKH"></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+
+
+<!-- Thêm mã phân trang -->
+<br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+            background-color: lightblue;
+            color: white;
+            padding: 10px 20px;
+            margin: 2px 5px;
+            border-radius: 5px;
+            border: none;
+            text-decoration: none;
+        }
+    </style>
+    <!-- Kết thúc -->

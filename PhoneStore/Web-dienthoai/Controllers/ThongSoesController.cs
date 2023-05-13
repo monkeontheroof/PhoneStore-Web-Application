@@ -17,6 +17,9 @@ namespace Web_dienthoai.Controllers
         // GET: ThongSoes
         public ActionResult Index()
         {
+            if (Session["Admin"] == null)
+                return RedirectToAction("Login", "Admin");
+
             var thongSoes = db.ThongSoes.Include(t => t.SanPham);
             return View(thongSoes.ToList());
         }
@@ -24,6 +27,9 @@ namespace Web_dienthoai.Controllers
         // GET: ThongSoes/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["Admin"] == null)
+                return RedirectToAction("Login", "Admin");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +45,9 @@ namespace Web_dienthoai.Controllers
         // GET: ThongSoes/Create
         public ActionResult Create()
         {
+            if (Session["Admin"] == null)
+                return RedirectToAction("Login", "Admin");
+
             ViewBag.IdSP = new SelectList(db.SanPhams, "IdSP", "MaSP");
             return View();
         }
@@ -64,6 +73,9 @@ namespace Web_dienthoai.Controllers
         // GET: ThongSoes/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["Admin"] == null)
+                return RedirectToAction("Login", "Admin");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -97,6 +109,9 @@ namespace Web_dienthoai.Controllers
         // GET: ThongSoes/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["Admin"] == null)
+                return RedirectToAction("Login", "Admin");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
