@@ -163,7 +163,7 @@ namespace Web_dienthoai.Controllers
                 }
                 db.Entry(sanPham).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "SanPhams", new { id = sanPham.IdSP});
             }
             ViewBag.MaTH = new SelectList(db.ThuongHieux, "MaTH", "TenTH", sanPham.MaTH);
             ViewBag.IdSP = new SelectList(db.ThongSoes, "IdSP", "CongNgheManHinh", sanPham.IdSP);
