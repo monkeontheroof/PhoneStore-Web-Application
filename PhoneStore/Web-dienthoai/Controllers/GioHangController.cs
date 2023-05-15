@@ -138,6 +138,7 @@ namespace Web_dienthoai.Controllers
             return View(gioHang);
         }
 
+        
         public ActionResult DongYDatHang(string HTThanhToan)
         {
             KhachHang kh = Session["KhachHang"] as KhachHang;
@@ -147,7 +148,7 @@ namespace Web_dienthoai.Controllers
             donHang.MaKH = kh.MaKH;
             donHang.NgayDH = DateTime.Now;
             donHang.TriGia = (decimal)TinhTongTien();
-            donHang.TinhTrang = "Đã đặt hàng";
+            donHang.TinhTrang = "Chờ xác nhận";
             donHang.TenNguoiNhan = kh.Hoten;
             donHang.SDTnhan = kh.SDT;
             donHang.DiaChiNhan= kh.DiaChi;

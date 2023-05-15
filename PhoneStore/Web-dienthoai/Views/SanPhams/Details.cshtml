@@ -58,7 +58,6 @@
                 @if (Session["Admin"] != null)
                 {
                     <a class="profile-card__button button--orange" href="~/SanPhams/Edit?id=@Model.IdSP">Chỉnh sửa</a>
-                    <a class="profile-card__button button--blue" href="~/SanPhams/Index">Trở về</a>
                 }
                 else
                 {
@@ -821,10 +820,9 @@
         </dl>*@
 </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdSP }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="profile-card-ctr">
+    <a style="text-align:center;" class="profile-card__button button--blue" href="~/SanPhams/Index">Trở về</a>
+</div>
 
 <script>
     $(document).ready(function () {

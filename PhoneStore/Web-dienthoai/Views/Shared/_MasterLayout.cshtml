@@ -24,18 +24,30 @@
 
 
             @*   <div class="search-cart">
-                <div class="search-sp">
-                    <i class="fa fa-search"></i>
-                </div>*@
+        <div class="search-sp">
+            <i class="fa fa-search"></i>
+        </div>*@
 
             <div class="ml-auto">
                 <i class="bi bi-bag">@Html.Action("GioHangPartial", "GioHang")</i>
             </div>
-            @*
-                <div class="user-profile">
-                    <i class="fa fa-user"></i>
+
+            @if (Session["KhachHang"] != null)
+            {
+                <div class="ml-auto user-profile">
+                    <a href="@Url.Action("HoSo", "NguoiDung")"><i class="fa fa-user"></i></a>
                 </div>
-            *@
+
+                <div class="ml-auto user-profile">
+                    <a href="@Url.Action("Logout", "NguoiDung")"><i class="fa fa-sign-out"></i></a>
+                </div>
+            }
+            else
+            {
+                <div class="user-profile">
+                    <a href="@Url.Action("DangNhap", "NguoiDung")"><i class="fa fa-user"></i></a>
+                </div>
+            }
 
         </div>
 

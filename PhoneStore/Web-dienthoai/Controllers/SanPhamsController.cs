@@ -131,6 +131,7 @@ namespace Web_dienthoai.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             SanPham sanPham = db.SanPhams.Find(id);
+
             if (sanPham == null)
             {
                 return HttpNotFound();
