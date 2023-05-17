@@ -45,8 +45,10 @@ GO
 --HinhSP
 CREATE TABLE HinhSP
 (
-	MaHinh varchar(20) primary key,
-	MaMau char(3) NOT NULL
+	MaMau char(3) NOT NULL,
+	IdSP int,
+	MaHinh varchar(20),
+	CONSTRAINT PK_HinhSP PRIMARY KEY (MaMau, IdSP, MaHinh)
 )
 GO
 
@@ -117,46 +119,10 @@ GO
 --TSKTSP--
 CREATE TABLE ThongSo
 (
-	IdSP int primary key,
-	CongNgheManHinh varchar(50),
-	DoPhanGiai varchar(50),
-	ManHinhrong varchar(50),
-	MatKinhCamUng nvarchar(50),
-	DoPhanGiaiCamS nvarchar(100),
-	QuayPhim varchar(500),
-	Flash nvarchar (50),
-	TinhNangCamS nvarchar (500),
-	DoPhanGiaiCamT nvarchar(100),
-	TinhNangCamT nvarchar (500),
-	HeDieuHanh varchar(25),
-	CPU nvarchar(100),
-	TocDoCPU nvarchar (100),
-	GPU nvarchar(50),
-	RAM varchar(6),
-	DungLuong  varchar(6),
-	DungLuongCon nvarchar (50),
-	DanhBa nvarchar (20),
-	Mang nvarchar (20),
-	Sim Nvarchar (100),
-	Wifi nvarchar (100),
-	GPS nvarchar (100),
-	Bluetooth varchar(50),
-	Sac varchar(100),
-	Jack varchar(100),
-	KetNoiKhac nvarchar (50),
-	DungLuongPin varchar(15),
-	LoaiPin varchar(25),
-	SacToiDa nvarchar (50),
-	CongNghePin nvarchar (100),
-	BaoMatNC nvarchar (100),
-	TinhNangDB nvarchar (250),
-	KhangNuocBui nvarchar (50),
-	XemPhim varchar(100),
-	NgheNhac nvarchar (100),
-	ThietKe nvarchar (50),
-	ChatLieu nvarchar(50),
-	KichThuoc nvarchar (100),
-	ThoiDiemRaMat date ,
+	IdSP int,
+	TenTS nvarchar(50),
+	Mota nvarchar(100),
+	CONSTRAINT PK_ThongSo PRIMARY KEY (IdSP,TenTS)
 )
 GO
 
@@ -172,11 +138,15 @@ REFERENCES [dbo].[SanPham] ([IdSP])
 GO
 ALTER TABLE [dbo].[ChiTietDH] CHECK CONSTRAINT [FK_ChiTietDH_SanPham]
 GO
-ALTER TABLE [dbo].[DonHang]  WITH CHECK ADD FOREIGN KEY([MaKH])
+ALTER TABLE [dbo].[DonHang]  WITH CHECK ADD  CONSTRAINT [FK_DonHang_KhachHang] FOREIGN KEY([MaKH])
 REFERENCES [dbo].[KhachHang] ([MaKH])
 GO
-ALTER TABLE [dbo].[DonHang]  WITH CHECK ADD FOREIGN KEY([MaNV])
+ALTER TABLE [dbo].[DonHang] CHECK CONSTRAINT [FK_DonHang_KhachHang]
+GO
+ALTER TABLE [dbo].[DonHang]  WITH CHECK ADD  CONSTRAINT [FK_DonHang_NhanVien] FOREIGN KEY([MaNV])
 REFERENCES [dbo].[NhanVien] ([MaNV])
+GO
+ALTER TABLE [dbo].[DonHang] CHECK CONSTRAINT [FK_DonHang_NhanVien]
 GO
 ALTER TABLE [dbo].[HinhSP]  WITH CHECK ADD  CONSTRAINT [FK_HinhSP_Mau] FOREIGN KEY([MaMau])
 REFERENCES [dbo].[Mau] ([MaMau])
@@ -188,8 +158,15 @@ REFERENCES [dbo].[SanPham] ([IdSP])
 GO
 ALTER TABLE [dbo].[Mau] CHECK CONSTRAINT [FK_Mau_SanPham]
 GO
-ALTER TABLE [dbo].[SanPham]  WITH CHECK ADD FOREIGN KEY([MaTH])
+ALTER TABLE [dbo].[SanPham]  WITH CHECK ADD  CONSTRAINT [FK_SanPham_ThuongHieu] FOREIGN KEY([MaTH])
 REFERENCES [dbo].[ThuongHieu] ([MaTH])
+GO
+ALTER TABLE [dbo].[SanPham] CHECK CONSTRAINT [FK_SanPham_ThuongHieu]
+GO
+ALTER TABLE [dbo].[TaiKhoanNV]  WITH CHECK ADD  CONSTRAINT [FK_TaiKhoanNV_NhanVien] FOREIGN KEY([MaNV])
+REFERENCES [dbo].[NhanVien] ([MaNV])
+GO
+ALTER TABLE [dbo].[TaiKhoanNV] CHECK CONSTRAINT [FK_TaiKhoanNV_NhanVien]
 GO
 ALTER TABLE [dbo].[ThongSo]  WITH CHECK ADD  CONSTRAINT [FK_ThongSo_SanPham] FOREIGN KEY([IdSP])
 REFERENCES [dbo].[SanPham] ([IdSP])
@@ -208,8 +185,7 @@ ALTER TABLE [dbo].[NhanVien]  WITH CHECK ADD CHECK  (([GioiTinh]=N'Nữ' OR [Gio
 GO
 ALTER TABLE [dbo].[SanPham]  WITH CHECK ADD CHECK  (([gia]>=(0)))
 GO
-ALTER TABLE TaiKhoanNV WITH CHECK ADD CONSTRAINT FK_TaikhoanNV_Nhanvien FOREIGN KEY(MaNV) REFERENCES NhanVien(MaNV)
-GO
+
 
 
 -------------------------------
