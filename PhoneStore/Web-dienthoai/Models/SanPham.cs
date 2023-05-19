@@ -19,6 +19,7 @@ namespace Web_dienthoai.Models
         {
             this.ChiTietDHs = new HashSet<ChiTietDH>();
             this.Maus = new HashSet<Mau>();
+            this.ThongSoes = new HashSet<ThongSo>();
         }
     
         public int IdSP { get; set; }
@@ -35,6 +36,7 @@ namespace Web_dienthoai.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mau> Maus { get; set; }
         public virtual ThuongHieu ThuongHieu { get; set; }
-        public virtual ThongSo ThongSo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ThongSo> ThongSoes { get; set; }
     }
 }

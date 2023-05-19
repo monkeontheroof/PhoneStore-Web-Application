@@ -106,11 +106,9 @@ namespace Web_dienthoai.Controllers
 
                 sanPham.HinhMinhHoa = fileName;
 
-                ThongSo thongSo = new ThongSo();
-                thongSo.IdSP = sanPham.IdSP;
+
                 sanPham.Tinhtrang = "Còn";
                 db.SanPhams.Add(sanPham);
-                db.ThongSoes.Add(thongSo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

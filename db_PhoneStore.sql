@@ -212,5 +212,5 @@ values('test', 'AD');
 
 insert into TaiKhoanNV values(1, 'admin', 'Admin@123');
 
-select * from TaiKhoanNV
+select * from ThongSo
 

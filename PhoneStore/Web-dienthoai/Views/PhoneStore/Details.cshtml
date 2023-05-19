@@ -1,4 +1,4 @@
-﻿@model Web_dienthoai.Models.DetailsView
+﻿@model Web_dienthoai.Models.SanPham
 
 
 @{
@@ -26,13 +26,13 @@
     <div class="slideshow-container">
 
         <div>
-            @foreach (var item in Model.HinhSP)
-            {
+            @*@foreach (var item in Model.HinhSP)
+            {*@
                 <div class="mySlides fade">
                     @* <div class="numbertext">3 / 3</div>*@
-                    <img src="~/Images/Phones/@item.MaHinh" style="width: 100%; height: 500px; padding-left:15%; padding-right:15%">
+                    <img src="~/Images/ProductView/@Model.HinhMinhHoa" style="width: 100%; height: 500px; padding-left:15%; padding-right:15%">
                 </div>
-            }
+            @*}*@
 
         </div>
 
@@ -53,9 +53,9 @@
 
     <hr /> <hr />
     <div style="padding-left: 100px; padding-right: 100px;">
-        <h3 style="color: white; text-align: center; ">@Model.SanPham.TenSP</h3>
+        <h3 style="color: white; text-align: center; ">@Model.TenSP</h3>
         <p style="color: white; padding-left: 200px; padding-right: 200px; text-align: justify ">
-            <span style="color: white; font-weight: bold; text-align: center; ">Mô tả:</span> @Model.SanPham.MoTaSP
+            <span style="color: white; font-weight: bold; text-align: center; ">Mô tả:</span> @Model.MoTaSP
         </p>
         <hr />
         <h4 style="color: white;">THÔNG SỐ KỸ THUẬT:</h4>
@@ -70,389 +70,21 @@
                         Màn hình
                     </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                Công nghệ màn hình:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.CongNgheManHinh
-                            </dd>
-                            <hr />
-                            <dt>
-                                Độ phân giải:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.DoPhanGiai
-                            </dd>
-                            <hr />
-                            <dt>
-                                Màn hình rộng:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.ManHinhrong
-                            </dd>
-                            <hr />
-                            <dt>
-                                Mặt kính cảm ứng:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.MatKinhCamUng
-                            </dd>
-                        </dl>
+                @foreach (var item in Model.ThongSoes)
+                {
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="form-group">
+                                <strong>@item.TenTS:</strong>
+                                <div class="col-md-10">
+                                    @item.Mota
+                                </div>                              
+                            </div>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Camera sau
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                Độ phân giải:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.DoPhanGiaiCamS
-                            </dd>
-                            <hr />
-                            <dt>
-                                Quay phim:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.QuayPhim
-                            </dd>
-                            <hr />
-                            <dt>
-                                Đèn Flash:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.Flash
-                            </dd>
-                            <hr />
-                            <dt>
-                                Tính năng:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.TinhNangCamS
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFour">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        Camera trước
-                    </button>
-                </h2>
-                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                Độ phân giải:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.DoPhanGiaiCamT
-                            </dd>
-                            <hr />
-                            <dt>
-                                Tính năng:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.TinhNangCamT
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Hệ điều hành & CPU
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                Hệ điều hành:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.HeDieuHanh
-                            </dd>
-                            <hr />
-                            <dt>
-                                Chip xử lý (CPU):
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.CPU
-                            </dd>
-                            <hr />
-                            <dt>
-                                Tốc độ CPU:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.TocDoCPU
-                            </dd>
-                            <hr />
-                            <dt>
-                                Chip đồ họa (GPU):
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.GPU
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFive">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        Bộ nhớ & Lưu trữ
-                    </button>
-                </h2>
-                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                RAM:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.RAM
-                            </dd>
-                            <hr />
-                            <dt>
-                                Dung lượng lưu trữ:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.DungLuong
-                            </dd>
-                            <hr />
-                            <dt>
-                                Dung lượng còn lại (khả dụng) khoảng:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.DungLuongCon
-                            </dd>
-                            <hr />
-                            <dt>
-                                Danh bạ:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.DanhBa
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingSix">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                        Kết nối
-                    </button>
-                </h2>
-                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                Mạng di động:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.Mang
-                            </dd>
-                            <hr />
-                            <dt>
-                                SIM:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.Sim
-                            </dd>
-                            <hr />
-                            <dt>
-                                Wifi:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.Wifi
-                            </dd>
-                            <hr />
-                            <dt>
-                                GPS:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.GPS
-                            </dd>
-                            <hr />
-                            <dt>
-                                Bluetooth:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.Bluetooth
-                            </dd>
-                            <hr />
-                            <dt>
-                                Cổng kết nối/sạc:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.Sac
-                            </dd>
-                            <hr />
-                            <dt>
-                                Jack tai nghe:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.Jack
-                            </dd>
-                            <hr />
-                            <dt>
-                                Kết nối khác:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.KetNoiKhac
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingSeven">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                        Pin & Sạc
-                    </button>
-                </h2>
-                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                Dung lượng pin:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.DungLuongPin
-                            </dd>
-                            <hr />
-                            <dt>
-                                Loại pin:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.LoaiPin
-                            </dd>
-                            <hr />
-                            <dt>
-                                Hỗ trợ sạc tối đa:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.SacToiDa
-                            </dd>
-                            <hr />
-                            <dt>
-                                Công nghệ pin:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.CongNghePin
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingEight">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                        Tiện ích
-                    </button>
-                </h2>
-                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                Bảo mật nâng cao:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.BaoMatNC
-                            </dd>
-                            <hr />
-                            <dt>
-                                Tính năng đặc biệt:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.TinhNangDB
-                            </dd>
-                            <hr />
-                            <dt>
-                                Kháng nước, bụi:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.KhangNuocBui
-                            </dd>
-                            <hr />
-                            <dt>
-                                Xem phim:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.XemPhim
-                            </dd>
-                            <hr />
-                            <dt>
-                                Nghe nhạc:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.NgheNhac
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingNine">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                        Thông tin chung
-                    </button>
-                </h2>
-                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                Thiết kế:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.ThietKe
-                            </dd>
-                            <hr />
-                            <dt>
-                                Chất liệu:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.ChatLieu
-                            </dd>
-                            <hr />
-                            <dt>
-                                Kích thước, khối lượng:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.KichThuoc
-                            </dd>
-                            <hr />
-                            <dt>
-                                Thời điểm ra mắt:
-                            </dt>
-                            <dd>
-                                @Model.ThongSo.ThoiDiemRaMat
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
+           
         </div>
 
         <hr /><hr />
@@ -460,10 +92,10 @@
     </div>
 
     <p class="price" style="text-align: center;">
-        <span style="color: red; background-color: white; font-weight: bold;  font-size: 40px; border: 2px solid white; padding: 5px; padding-bottom: 10px; border-radius: 8px;">Giá bán: @Model.SanPham.Gia VNĐ</span>
+        <span style="color: red; background-color: white; font-weight: bold;  font-size: 40px; border: 2px solid white; padding: 5px; padding-bottom: 10px; border-radius: 8px;">Giá bán: @Model.Gia VNĐ</span>
     </p>
 
     <hr /><hr />
 
-    <a class="btn btn-primary" style=" margin-left: 47%; padding:20px; margin-bottom:2%; font-weight:bold; justify-content: center; align-items: center;" href="@Url.Action("ThemSP", "GioHang", new { IdSP = Model.SanPham.IdSP })"> Đặt mua </a>
+    <a class="btn btn-primary" style=" margin-left: 47%; padding:20px; margin-bottom:2%; font-weight:bold; justify-content: center; align-items: center;" href="@Url.Action("ThemSP", "GioHang", new { IdSP = Model.IdSP })"> Đặt mua </a>
 </div>
