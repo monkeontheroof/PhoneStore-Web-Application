@@ -186,6 +186,9 @@
     <Compile Include="Models\SanPham.cs">
       <DependentUpon>PhoneStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>PhoneStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TaiKhoanNV.cs">
       <DependentUpon>PhoneStoreModel.tt</DependentUpon>
     </Compile>
@@ -1035,11 +1038,6 @@
     <Content Include="Views\SanPhams\Details.cshtml" />
     <Content Include="Views\SanPhams\Edit.cshtml" />
     <Content Include="Views\SanPhams\Index.cshtml" />
-    <Content Include="Views\ThongSoes\Create.cshtml" />
-    <Content Include="Views\ThongSoes\Delete.cshtml" />
-    <Content Include="Views\ThongSoes\Details.cshtml" />
-    <Content Include="Views\ThongSoes\Edit.cshtml" />
-    <Content Include="Views\ThongSoes\Index.cshtml" />
     <Content Include="Views\DonHangs\Create.cshtml" />
     <Content Include="Views\DonHangs\Delete.cshtml" />
     <Content Include="Views\DonHangs\Details.cshtml" />
@@ -1160,6 +1158,11 @@
     <Content Include="Views\ChiTietDHs\Details.cshtml" />
     <Content Include="Views\ChiTietDHs\Edit.cshtml" />
     <Content Include="Views\ChiTietDHs\Index.cshtml" />
+    <Content Include="Views\ThongSoes\Create.cshtml" />
+    <Content Include="Views\ThongSoes\Delete.cshtml" />
+    <Content Include="Views\ThongSoes\Details.cshtml" />
+    <Content Include="Views\ThongSoes\Edit.cshtml" />
+    <Content Include="Views\ThongSoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

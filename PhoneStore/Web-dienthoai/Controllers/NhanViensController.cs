@@ -76,6 +76,15 @@ namespace Web_dienthoai.Controllers
             if (Session["Admin"] == null)
                 return RedirectToAction("Login", "Admin");
 
+            List<SelectListItem> gioitinh = new List<SelectListItem>();
+            gioitinh.Add(new SelectListItem { Text = "Nam", Value = "Nam" });
+            gioitinh.Add(new SelectListItem { Text = "Nữ", Value = "Nữ" });
+            ViewBag.Gioitinh = gioitinh;
+
+            List<SelectListItem> chucVu = new List<SelectListItem>();
+            chucVu.Add(new SelectListItem { Text = "Admin", Value = "AD" });
+            chucVu.Add(new SelectListItem { Text = "Nhân viên", Value = "NV" });
+            ViewBag.Chucvu = chucVu;
             return View();
         }
 
@@ -101,6 +110,16 @@ namespace Web_dienthoai.Controllers
         {
             if (Session["Admin"] == null)
                 return RedirectToAction("Login", "Admin");
+
+            List<SelectListItem> gioitinh = new List<SelectListItem>();
+            gioitinh.Add(new SelectListItem { Text = "Nam", Value = "Nam" });
+            gioitinh.Add(new SelectListItem { Text = "Nữ", Value = "Nữ" });
+            ViewBag.Gioitinh = gioitinh;
+
+            List<SelectListItem> chucVu = new List<SelectListItem>();
+            chucVu.Add(new SelectListItem { Text = "Admin", Value = "AD" });
+            chucVu.Add(new SelectListItem { Text = "Nhân viên", Value = "NV" });
+            ViewBag.Chucvu = chucVu;
 
             if (id == null)
             {

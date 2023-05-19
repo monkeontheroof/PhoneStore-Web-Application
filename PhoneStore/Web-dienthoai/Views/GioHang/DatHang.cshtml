@@ -7,77 +7,85 @@
     KhachHang kh = Session["KhachHang"] as KhachHang;
 }
 
-<link rel="stylesheet" href="~/Content/Image.css" />
+<style>
+    table{
+        border: #000000 solid;
+        border-radius: 4px;
+    }
+</style>
 
-<div  style="padding-left: 15%; padding-right:15%">
-    <h2 class="text-white" style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
-    <table class="table table-bordered">
-        <thead>
-            <tr class="text-white">
-                <th>Mã sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Hình ảnh</th>
-                <th>Số lượng</th>
-                <th>Đơn giá</th>
-                <th>Thành tiền</th>
-            </tr>
-        </thead>
-        <tbody class="text-white">
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.MaSP</td>
-                    <td>@item.TenSP</td>
-                    <td><img src="~/Images/Phones/@item.HinhSP" style="width:20%" /></td>
-                    <td>@item.SoLuong</td>
-                    <td>@String.Format("{0:0,0}", item.DonGia)</td>
-                    <td>@String.Format("0:0,0", item.ThanhTien())</td>
+    <link rel="stylesheet" href="~/Content/Image.css" />
+
+    <div style="padding-left: 15%; padding-right:15%">
+        <h2 class="text-white" style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="text-white">
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Hình ảnh</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
                 </tr>
-            }
-            <tr style="font-weight:bold; text-align:right; color:red;">
-                <td colspan="4">Tổng số lượng: @ViewBag.TongSL</td>
-                <td colspan="5">Tổng tiền: @ViewBag.TongTien</td>
-            </tr>
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="text-white">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MaSP</td>
+                        <td>@item.TenSP</td>
+                        <td><img src="~/Images/Phones/@item.HinhSP" style="width:20%" /></td>
+                        <td>@item.SoLuong</td>
+                        <td>@String.Format("{0:0,0}", item.DonGia)</td>
+                        <td>@String.Format("0:0,0", item.ThanhTien())</td>
+                    </tr>
+                }
+                <tr style="font-weight:bold; text-align:right; color:red;">
+                    <td colspan="4">Tổng số lượng: @ViewBag.TongSL</td>
+                    <td colspan="5">Tổng tiền: @ViewBag.TongTien</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <h2 class="text-white" style="text-align:center">THÔNG TIN KHÁCH HÀNG</h2>
-    <table class="table table-bordered text-white">
-        <tr>
-            <td>Họ tên: </td>
-            <td>@kh.Hoten</td>
-        </tr>
-        <tr>
-            <td>Địa chỉ: </td>
-            <td>@kh.DiaChi</td>
-        </tr>
-        <tr>
-            <td>Điện thoại: </td>
-            <td>@kh.SDT</td>
-        </tr>
-        <tr>
-            <td>Ngày đặt: </td>
-            <td>@DateTime.Now.ToShortDateString()</td>
-        </tr>
-        <tr>
-            <td>Hình thức thanh toán:</td>
-            <td>
-                <div>
-                    <label>
-                        <input type="radio" name="HTThanhToan" value="Thanh toán tiền mặt" checked /> Thanh toán tiền mặt
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input type="radio" name="HTThanhToan" value="Thẻ tín dụng/Ngân hàng" /> Thẻ tín dụng/Ngân hàng
-                    </label>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align: center;">
-                @Html.ActionLink("ĐỒNG Ý ĐẶT HÀNG", "DongYDatHang", null, new { @class = "btn btn-primary" })
-            </td>
-        </tr>
-    </table>
-</div>
+        <h2 class="text-white" style="text-align:center">THÔNG TIN KHÁCH HÀNG</h2>
+        <table class="table table-bordered text-white">
+            <tr>
+                <td>Họ tên: </td>
+                <td>@kh.Hoten</td>
+            </tr>
+            <tr>
+                <td>Địa chỉ: </td>
+                <td>@kh.DiaChi</td>
+            </tr>
+            <tr>
+                <td>Điện thoại: </td>
+                <td>@kh.SDT</td>
+            </tr>
+            <tr>
+                <td>Ngày đặt: </td>
+                <td>@DateTime.Now.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <td>Hình thức thanh toán:</td>
+                <td>
+
+                        <div>
+                            @Html.RadioButton("HTThanhToan", "Tiền mặt", new { @checked = true }) Tiền mặt
+                        </div>
+                        <div>
+                            @Html.RadioButton("HTThanhToan", "Thẻ tín dụng") Thẻ tín dụng / Ngân hàng
+                        </div>
+
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    @Html.ActionLink("ĐỒNG Ý ĐẶT HÀNG", "DongYDatHang", null, new { @class = "btn btn-primary" })
+                    @*<input type="submit" value="@Url.Action("DongYDatHang", "GioHang")"/>*@
+                </td>
+            </tr>
+        </table>
+    </div>
+

@@ -17,7 +17,7 @@
                 @Html.HiddenFor(model => model.MaSP)
 
                 <div class="form-wrapper">
-                    @Html.LabelFor(model => model.TenSP, "Tên sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <p class="col-md-10">Tên sản phẩm</p>
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="form-wrapper">
-                    @Html.LabelFor(model => model.MaTH, "Thương hiệu", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <p class="col-md-10">Thương hiệu</p>
                     <div class="col-md-10">
                         @Html.DropDownList("MaTH", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.MaTH, "", new { @class = "text-danger" })
@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-wrapper">
-                @Html.LabelFor(model => model.Gia, "Giá tiền", htmlAttributes: new { @class = "control-label col-md-2" })
+                <p class="col-md-10">Giá tiền</p>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
@@ -43,7 +43,7 @@
             </div>
 
             <div class="form-wrapper">
-                @Html.LabelFor(model => model.Tinhtrang, "Tình trạng", htmlAttributes: new { @class = "control-label col-md-2" })
+                <p class="col-md-10">Tình trạng</p>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Tinhtrang, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Tinhtrang, "", new { @class = "text-danger" })
@@ -53,7 +53,7 @@
 
 
             <div class="form-wrapper">
-                @Html.LabelFor(model => model.MoTaSP, "Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
+                <p class="col-md-10">Mô tả</p>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.MoTaSP, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.MoTaSP, "", new { @class = "text-danger" })
@@ -61,12 +61,12 @@
             </div>
 
             <div class="form-wrapper">
-                @Html.LabelFor(model => model.HinhMinhHoa, "Hình minh họa", htmlAttributes: new { @class = "control-label col-md-2" })
+                <p class="col-md-10">Hình minh họa</p>
                 <div class="col-md-10">
                     (CHỌN ẢNH MỚI)
                     <br />
                     <input type="file" name="Hinhminhhoa" style="padding-bottom: 20px;" />
-                    <img src="~/Images/ProductView/@Model.HinhMinhHoa" />
+                    <img src="~/Images/ProductView/@Model.HinhMinhHoa" style="border-radius:4px; border:#000000 solid"/>
                     @Html.ValidationMessageFor(model => model.HinhMinhHoa, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -74,13 +74,11 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input style="margin-left:-15px;background-color:Green" type="submit" value="Lưu" class=" button1" />
+                    <a style="margin-left: -15px;" class="button1" href="~/SanPhams/Details?id=@Model.IdSP">Trở về</a>
                 </div>
             </div>
         }
 
-        <div style="margin-left:45px;">
-            <a style="color: #0a3a5a" href="~/SanPhams/Index">Quay lại</a>
-        </div>
     </div>
 
 </div>

@@ -46,6 +46,7 @@ namespace Web_dienthoai.Controllers
                     {
                         db.KhachHangs.Add(kh);
                         db.SaveChanges();
+                        ViewBag.ThongBao = "Đăng ký thành công!";
                         return RedirectToAction("DangNhap");
                     }
                     catch

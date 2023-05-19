@@ -42,29 +42,11 @@ namespace Web_dienthoai.Controllers
 
         
         
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            var list = new List<DetailsView>();
-
-            var phone = db.SanPhams.FirstOrDefault(s => s.IdSP == id);
-            var tskt = db.ThongSoes.FirstOrDefault(s => s.IdSP == id);
-
-            var pics = (from h in db.HinhSPs
-                        join s in db.Maus on h.MaMau equals s.MaMau
-                        where s.IdSP == id
-                        select h).ToList();
-
-            var myview = new DetailsView()
-            {
-                SanPham = phone,
-                ThongSo = tskt,
-                HinhSP = pics
-            };
-
-
-            list.Add(myview);
+            SanPham sanpham = db.SanPhams.Find(id);
             
-            return View(myview);
+            return View(sanpham);
         }
     }
 }
