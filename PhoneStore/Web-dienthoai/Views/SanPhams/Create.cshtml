@@ -11,6 +11,7 @@
         @using (Html.BeginForm("Create", "SanPhams", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <h3>Thêm sản phẩm</h3>
 
             <div class="form-wrapper">

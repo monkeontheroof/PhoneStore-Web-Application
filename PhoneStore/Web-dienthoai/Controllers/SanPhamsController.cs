@@ -192,9 +192,12 @@ namespace Web_dienthoai.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ThongSo thongSo = db.ThongSoes.Find(id);
+            var thongSo = db.ThongSoes.Where(ts => ts.IdSP== id).ToList();
             SanPham sanPham = db.SanPhams.Find(id);
-            db.ThongSoes.Remove(thongSo);
+            foreach(var item in thongSo)
+            {
+                db.ThongSoes.Remove(item);
+            }
             db.SanPhams.Remove(sanPham);
             db.SaveChanges();
             return RedirectToAction("Index");
