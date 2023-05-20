@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
+<br /><br />
+@if (TempData["ThongBao"] != null)
+            {
+                <div class="au-message__noti">
+                    @TempData["ThongBao"].ToString()
+                </div>
+            }
+
 <div class="container" style="background-image: url('../../Images/library-background-form.jpg');">
     <div class="inner">
 
@@ -15,32 +23,32 @@
             <h3>Thêm sản phẩm</h3>
 
             <div class="form-wrapper">
-                Tên sản phẩm:
-                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
+                Tên sản phẩm (*):
+                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-wrapper">
-                Thương hiệu:
-                @Html.DropDownList("MaTH", null, htmlAttributes: new { @class = "form-control" })
+                Thương hiệu (*):
+                @Html.DropDownList("MaTH", null, htmlAttributes: new { @class = "form-control", required = "required" })
                 @Html.ValidationMessageFor(model => model.MaTH, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-wrapper">
-                Giá tiền:
-                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
+                Giá tiền (*):
+                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-wrapper">
-                Mô tả:
-                @Html.EditorFor(model => model.MoTaSP, new { htmlAttributes = new { @class = "form-control" } })
+                Mô tả (*):
+                @Html.EditorFor(model => model.MoTaSP, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.MoTaSP, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-wrapper">
-                Hình minh họa:
-                <input type="file" name="Hinhminhhoa" />
+                Hình minh họa (*):
+                <input type="file" name="Hinhminhhoa" required />
                 @Html.ValidationMessageFor(model => model.HinhMinhHoa, "", new { @class = "text-danger" })
             </div>
 

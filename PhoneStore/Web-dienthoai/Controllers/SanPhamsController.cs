@@ -105,12 +105,25 @@ namespace Web_dienthoai.Controllers
                 }
 
                 sanPham.HinhMinhHoa = fileName;
-
-
                 sanPham.Tinhtrang = "Còn";
-                db.SanPhams.Add(sanPham);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (db.SanPhams.Any(s => s.TenSP == sanPham.TenSP && s.MaTH == sanPham.MaTH))
+                {
+                    TempData["ThongBao"] = "Sản phẩm đã tồn tại!";
+                    return RedirectToAction("Create");
+                }
+
+                try
+                {
+                    db.SanPhams.Add(sanPham);
+                    db.SaveChanges();
+                    TempData["ThongBao"] = "Thêm sản phẩm thành công!";
+                    return RedirectToAction("Create");
+                }
+                catch(Exception ex)
+                {
+                    TempData["ThongBao"] = "Thêm sản phẩm thất bại!";
+                    return RedirectToAction("Create");
+                }
             }
 
             ViewBag.MaTH = new SelectList(db.ThuongHieux, "MaTH", "TenTH", sanPham.MaTH);
