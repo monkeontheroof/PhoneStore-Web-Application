@@ -97,9 +97,19 @@ namespace Web_dienthoai.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.NhanViens.Add(nhanVien);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.NhanViens.Add(nhanVien);
+                    db.SaveChanges();
+                    TempData["ThongBaoSuccess"] = "Thêm thành công nhân viên " + nhanVien.Hoten;
+                    return RedirectToAction("Create");
+                }
+                catch (Exception ex)
+                {
+                    TempData["ThongBaoFailed"] = "Thêm nhân viên thất bại!";
+                    return RedirectToAction("Create");
+                }
+                
             }
 
             return View(nhanVien);
@@ -142,9 +152,19 @@ namespace Web_dienthoai.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nhanVien).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Entry(nhanVien).State = EntityState.Modified;
+                    db.SaveChanges();
+                    TempData["ThongBaoSuccess"] = "Cập nhật thành công nhân viên " + nhanVien.Hoten;
+                    return RedirectToAction("Edit", new {id = nhanVien.MaNV});
+                }
+                catch (Exception ex)
+                {
+                    TempData["ThongBaoFailed"] = "Cập nhật nhân viên thất bại!";
+                    return RedirectToAction("Edit", new { id = nhanVien.MaNV });
+                }
+                
             }
             return View(nhanVien);
         }
@@ -172,10 +192,23 @@ namespace Web_dienthoai.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NhanVien nhanVien = db.NhanViens.Find(id);
-            db.NhanViens.Remove(nhanVien);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                NhanVien nhanVien = db.NhanViens.Find(id);
+                TaiKhoanNV tkNhanvien = db.TaiKhoanNVs.Find(id);
+                if(tkNhanvien != null)
+                    db.TaiKhoanNVs.Remove(tkNhanvien);
+
+                db.NhanViens.Remove(nhanVien);
+                db.SaveChanges();
+                TempData["ThongBaoSuccess"] = "Xóa thành công nhân viên " + nhanVien.Hoten.ToString().ToUpper();
+                return RedirectToAction("Index");
+            }
+            catch(Exception ex)
+            {
+                TempData["ThongBaoFailed"] = "Xóa nhân viên thất bại!";
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

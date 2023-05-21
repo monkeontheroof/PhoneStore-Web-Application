@@ -29,7 +29,25 @@
     }
 </style>
 
+<br />
+<br />
+@if (TempData["ThongBaoSuccess"] != null)
+{
+    <div class="alert alert-success d-flex" role="alert">
+        <p>
+            <i class="fas fa-check"></i> <span>@TempData["ThongBaoSuccess"].ToString()</span>
+        </p>
 
+    </div>
+}
+@if (TempData["ThongBaoFailed"] != null)
+{
+    <div class="alert alert-danger d-flex" role="alert">
+        <p>
+            <i class="fas fa-exclamation-circle"></i> <span>@TempData["ThongBaoFailed"].ToString()</span>
+        </p>
+    </div>
+}
 
 <div class="row mt-4">
     <div class="col-6">

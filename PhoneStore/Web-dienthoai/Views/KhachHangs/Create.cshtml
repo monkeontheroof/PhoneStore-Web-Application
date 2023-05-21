@@ -5,12 +5,30 @@
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
-<h2>Create</h2>
+<br />
+<br />
+@if (TempData["ThongBaoSuccess"] != null)
+{
+    <div class="alert alert-success d-flex" role="alert">
+        <p>
+            <i class="fas fa-check"></i> <span>@TempData["ThongBaoSuccess"].ToString()</span>
+        </p>
 
-@using (Html.BeginForm()) 
+    </div>
+}
+@if (TempData["ThongBaoFailed"] != null)
+{
+    <div class="alert alert-danger d-flex" role="alert">
+        <p>
+            <i class="fas fa-exclamation-circle"></i> <span>@TempData["ThongBaoFailed"].ToString()</span>
+        </p>
+    </div>
+}
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>KhachHang</h4>
         <hr />

@@ -155,24 +155,39 @@ namespace Web_dienthoai.Controllers
             donHang.HTThanhToan = HTThanhToan;
             donHang.HTGiaohang = "Ship COD";
 
-            db.DonHangs.Add(donHang);
-            db.SaveChanges();
-
-            foreach(var item in gioHang)
+            try
             {
-                ViewBag.ThanhTien = TinhTongTien();
-                ChiTietDH detail = new ChiTietDH();
-                detail.MaDH = donHang.MaDH;
-                detail.SoLuong = item.SoLuong;
-                detail.Dongia = (decimal)item.DonGia;
-                detail.IdSP = item.IdSP;
-                db.ChiTietDHs.Add(detail);
+                db.DonHangs.Add(donHang);
+                db.SaveChanges();
+
             }
+            catch (Exception ex)
+            {
+                TempData["ThongBaoFailed"] = "Tạo đơn hàng thất bại!";
+                return RedirectToAction("HienThiGioHang");
+            }
+            try
+            {
+                foreach (var item in gioHang)
+                {
+                    ViewBag.ThanhTien = TinhTongTien();
+                    ChiTietDH detail = new ChiTietDH();
+                    detail.MaDH = donHang.MaDH;
+                    detail.SoLuong = item.SoLuong;
+                    detail.Dongia = (decimal)item.DonGia;
+                    detail.IdSP = item.IdSP;
+                    db.ChiTietDHs.Add(detail);
+                }
 
-            db.SaveChanges();
-
-            Session["GioHang"] = null;
-            return RedirectToAction("HoanThanhDonHang");
+                db.SaveChanges();
+                Session["GioHang"] = null;
+                return RedirectToAction("HoanThanhDonHang");
+            }
+            catch(Exception ex)
+            {
+                TempData["ThongBaoFailed"] = "Tạo đơn hàng thất bại!";
+                return RedirectToAction("HienThiGioHang");
+            }
         }
 
         public ActionResult HoanThanhDonHang()

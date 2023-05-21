@@ -58,7 +58,7 @@ CREATE TABLE KhachHang
 (
 	MaKH int IDENTITY(1,1) primary key NOT NULL,
 	Hoten nvarchar(50) NOT NULL,
-	SDT char(10) ,
+	SDT char(10) check(SDT in ('[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')),
 	DiaChi nvarchar(100),
 	GioiTinh nvarchar(3) check (GioiTinh in(N'Nam',N'Nữ')),
 	NgaySinh  SMALLDATETIME,
@@ -71,7 +71,7 @@ GO
 CREATE TABLE NhanVien(
 	MaNV int IDENTITY(1,1) primary key,
 	Hoten nvarchar(50) NOT NULL,
-	SDT char(11),
+	SDT char(11) check(SDT in ('[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]','[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')),
 	GioiTinh nvarchar(3) check (GioiTinh in(N'Nam',N'Nữ')),
 	DiaChi nvarchar(100),
 	NgaySinh smalldatetime,

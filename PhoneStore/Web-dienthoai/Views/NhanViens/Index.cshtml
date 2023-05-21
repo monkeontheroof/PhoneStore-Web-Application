@@ -28,6 +28,26 @@
     }
 </style>
 
+<br />
+<br />
+@if (TempData["ThongBaoSuccess"] != null)
+{
+    <div class="alert alert-success d-flex" role="alert">
+        <p>
+            <i class="fas fa-check"></i> <span>@TempData["ThongBaoSuccess"].ToString()</span>
+        </p>
+
+    </div>
+}
+@if (TempData["ThongBaoFailed"] != null)
+{
+    <div class="alert alert-danger d-flex" role="alert">
+        <p>
+            <i class="fas fa-exclamation-circle"></i> <span>@TempData["ThongBaoFailed"].ToString()</span>
+        </p>
+    </div>
+}
+
 <div class="row mt-4">
     <div class="col-6">
         @Html.ActionLink("THÊM NHÂN VIÊN", "Create", null, new { @class = "btn btn-success" })
@@ -64,28 +84,28 @@
                 <td>
                     <a style="text-decoration: none; color: black;" href="~/NhanViens/Details?id=@item.MaNV">
                         @Html.DisplayFor(modelItem => item.MaNV)
-                        </a>
+                    </a>
                 </td>
                 <td>
                     <a style="text-decoration: none; color: black;" href="~/NhanViens/Details?id=@item.MaNV">
                         @Html.DisplayFor(modelItem => item.Hoten)
-                        </a>
+                    </a>
                 </td>
                 <td>
                     <a style="text-decoration: none; color: black;" href="~/NhanViens/Details?id=@item.MaNV">
                         @Html.DisplayFor(modelItem => item.TaiKhoanNV.Username)
-                        </a>
+                    </a>
                 </td>
                 <td>
                     <a style="text-decoration: none; color: black;" href="~/NhanViens/Details?id=@item.MaNV">
                         @Html.DisplayFor(modelItem => item.ChucVu)
-                        </a>
+                    </a>
                 </td>
                 <td>
                     @*@Html.ActionLink("Edit", "Edit", new { id = item.MaNV }) |
-        @Html.ActionLink("Details", "Details", new { id = item.MaNV }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.MaNV })*@
-                    <a class="edit-button fa fa-pencil" href="~/NhanViens/Details?id=@item.MaNV"></a>
+                        @Html.ActionLink("Details", "Details", new { id = item.MaNV }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MaNV })*@
+                    <a class="edit-button fa fa-pencil" href="~/NhanViens/Edit?id=@item.MaNV"></a>
                     <a class="delete-button fa fa-trash" href="~/NhanViens/Delete?id=@item.MaNV"></a>
                 </td>
             </tr>

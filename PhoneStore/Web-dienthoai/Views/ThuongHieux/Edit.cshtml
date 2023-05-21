@@ -5,9 +5,29 @@
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
+<br />
+<br />
+@if (TempData["ThongBaoSuccess"] != null)
+{
+    <div class="alert alert-success d-flex" role="alert">
+        <p>
+            <i class="fas fa-check"></i> <span>@TempData["ThongBaoSuccess"].ToString()</span>
+        </p>
+
+    </div>
+}
+@if (TempData["ThongBaoFailed"] != null)
+{
+    <div class="alert alert-danger d-flex" role="alert">
+        <p>
+            <i class="fas fa-exclamation-circle"></i> <span>@TempData["ThongBaoFailed"].ToString()</span>
+        </p>
+    </div>
+}
+
 <div class="container" style="background-image: url('../../Images/library-background-form.jpg');">
     <div class="inner">
-        @using (Html.BeginForm("Edit", "NhanViens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("Edit", "ThuongHieux", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
             <h3>Cập nhập thông tin Nhân viên</h3>

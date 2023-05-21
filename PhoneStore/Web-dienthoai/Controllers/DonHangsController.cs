@@ -110,13 +110,28 @@ namespace Web_dienthoai.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaDH,MaKH,TenNguoiNhan,SDTnhan,DiaChiNhan,TriGia,TinhTrang,NgayDH,HTThanhToan,HTGiaohang,MaNV")] DonHang donHang)
+        public ActionResult Create([Bind(Include = "MaKH,TenNguoiNhan,SDTnhan,DiaChiNhan,HTThanhToan,HTGiaohang")] DonHang donHang)
         {
             if (ModelState.IsValid)
             {
-                db.DonHangs.Add(donHang);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    TaiKhoanNV nv = Session["Admin"] as TaiKhoanNV;
+                    donHang.MaNV = nv.MaNV;
+                    donHang.TriGia = (decimal)1;
+                    donHang.NgayDH = DateTime.Now;
+                    donHang.TinhTrang = "Đang xử lý";
+                    db.DonHangs.Add(donHang);
+                    db.SaveChanges();
+                    TempData["ThongBaoSuccess"] = "Đơn hàng " + donHang.MaDH + " đã được tạo!";
+                    return RedirectToAction("Create");
+                }
+                catch(Exception ex)
+                {
+                    TempData["ThongBaoFailed"] = "Thất bại khi tạo đơn hàng!";
+                    return RedirectToAction("Create");
+                }
+                
             }
 
             ViewBag.MaKH = new SelectList(db.KhachHangs, "MaKH", "Hoten", donHang.MaKH);
@@ -153,9 +168,18 @@ namespace Web_dienthoai.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(donHang).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Entry(donHang).State = EntityState.Modified;
+                    db.SaveChanges();
+                    TempData["ThongBaoSuccess"] = "Đã cập nhật đơn hàng " + donHang.MaDH;
+                    return RedirectToAction("Edit", new {id = donHang.MaDH});
+                }
+                catch(Exception ex)
+                {
+                    TempData["ThongBaoFailed"] = "Cập nhật đơn hàng thất bại!";
+                    return RedirectToAction("Edit", new { id = donHang.MaDH });
+                }
             }
             ViewBag.MaKH = new SelectList(db.KhachHangs, "MaKH", "Hoten", donHang.MaKH);
             ViewBag.MaNV = new SelectList(db.NhanViens, "MaNV", "Hoten", donHang.MaNV);
@@ -199,5 +223,6 @@ namespace Web_dienthoai.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

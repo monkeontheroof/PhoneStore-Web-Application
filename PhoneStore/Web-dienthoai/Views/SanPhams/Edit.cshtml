@@ -5,7 +5,27 @@
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
-<div class="container" style="background-image: url('../../Images/library-background-form.jpg');">
+<br />
+<br />
+@if (TempData["ThongBaoSuccess"] != null)
+{
+    <div class="alert alert-success d-flex" role="alert">
+        <p>
+            <i class="fas fa-check"></i> <span>@TempData["ThongBaoSuccess"].ToString()</span>
+        </p>
+
+    </div>
+}
+@if (TempData["ThongBaoFailed"] != null)
+{
+    <div class="alert alert-danger d-flex" role="alert">
+        <p>
+            <i class="fas fa-exclamation-circle"></i> <span>@TempData["ThongBaoFailed"].ToString()</span>
+        </p>
+    </div>
+}
+
+<div class="container" style="background-image: url('../../Images/gradient-background.jpg');">
     <div class="inner">
         @using (Html.BeginForm("Edit", "SanPhams", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
@@ -19,7 +39,7 @@
                 <div class="form-wrapper">
                     <p class="col-md-10">Tên sản phẩm</p>
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -27,7 +47,7 @@
                 <div class="form-wrapper">
                     <p class="col-md-10">Thương hiệu</p>
                     <div class="col-md-10">
-                        @Html.DropDownList("MaTH", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("MaTH", null, htmlAttributes: new { @class = "form-control", required = "required" })
                         @Html.ValidationMessageFor(model => model.MaTH, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -37,7 +57,7 @@
             <div class="form-wrapper">
                 <p class="col-md-10">Giá tiền</p>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -45,7 +65,7 @@
             <div class="form-wrapper">
                 <p class="col-md-10">Tình trạng</p>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Tinhtrang, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Tinhtrang, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.Tinhtrang, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -55,7 +75,7 @@
             <div class="form-wrapper">
                 <p class="col-md-10">Mô tả</p>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.MoTaSP, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.MoTaSP, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.MoTaSP, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -65,8 +85,9 @@
                 <div class="col-md-10">
                     (CHỌN ẢNH MỚI)
                     <br />
-                    <input type="file" name="Hinhminhhoa" style="padding-bottom: 20px;" />
-                    <img src="~/Images/ProductView/@Model.HinhMinhHoa" style="border-radius:4px; border:#000000 solid"/>
+                    <input type="file" name="Hinhminhhoa" style="padding-bottom: 20px;" required />
+                    <img src="~/Images/ProductView/@Model.HinhMinhHoa" style="border-radius:4px; border:#000000 solid" />
+                    <p style="text-align:center;">(Ảnh hiện tại)</p>
                     @Html.ValidationMessageFor(model => model.HinhMinhHoa, "", new { @class = "text-danger" })
                 </div>
             </div>

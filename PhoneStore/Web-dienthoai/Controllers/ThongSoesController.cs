@@ -59,9 +59,18 @@ namespace Web_dienthoai.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ThongSoes.Add(thongSo);
-                db.SaveChanges();
-                return RedirectToAction("Details", "SanPhams", new {id = thongSo.IdSP});
+                try
+                {
+                    db.ThongSoes.Add(thongSo);
+                    db.SaveChanges();
+                    TempData["ThongBaoSuccess"] = "Thêm thành công " + thongSo.TenTS.ToString();
+                    return RedirectToAction("Create", new {id = thongSo.IdSP});
+                }
+                catch (Exception ex)
+                {
+                    TempData["ThongBaoFailed"] = "Không thành công! Hãy thử lại.";
+                    return RedirectToAction("Create", new { id = thongSo.IdSP });
+                }
             }
 
             ViewBag.IdSP = new SelectList(db.SanPhams, "IdSP", "MaSP", thongSo.IdSP);
@@ -69,13 +78,13 @@ namespace Web_dienthoai.Controllers
         }
 
         // GET: ThongSoes/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id, string tents)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ThongSo thongSo = db.ThongSoes.Find(id);
+            ThongSo thongSo = db.ThongSoes.First(ts => ts.IdSP == id && ts.TenTS == tents);
             if (thongSo == null)
             {
                 return HttpNotFound();
@@ -93,9 +102,18 @@ namespace Web_dienthoai.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(thongSo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Entry(thongSo).State = EntityState.Modified;
+                    db.SaveChanges();
+                    TempData["ThongBaoSuccess"] = "Cập nhật thông số " + thongSo.TenTS.ToString() + " thành công!";
+                    return RedirectToAction("Edit", new {id = thongSo.TenTS});
+                }
+                catch(Exception ex)
+                {
+                    TempData["ThongBaoFailed"] = "Cập nhật thất bại!";
+                    return RedirectToAction("Edit", new { id = thongSo.TenTS });
+                }
             }
             ViewBag.IdSP = new SelectList(db.SanPhams, "IdSP", "MaSP", thongSo.IdSP);
             return View(thongSo);
@@ -122,9 +140,18 @@ namespace Web_dienthoai.Controllers
         public ActionResult DeleteConfirmed(int id, string tents)
         {
             ThongSo thongSo = db.ThongSoes.First(ts => ts.IdSP == id && ts.TenTS == tents);
-            db.ThongSoes.Remove(thongSo);
-            db.SaveChanges();
-            return RedirectToAction("Details", "SanPhams", new {id = id});
+            try
+            {
+                db.ThongSoes.Remove(thongSo);
+                db.SaveChanges();
+                TempData["ThongBaoSuccess"] = "Xóa thành công thông số " + thongSo.TenTS.ToString();
+                return RedirectToAction("Details", "SanPhams", new { id = id });
+            }
+            catch(Exception ex)
+            {
+                TempData["ThongBaoFailed"] = "Xóa thất bại!";
+                return RedirectToAction("Details", "SanPhams", new { id = id });
+            }
         }
 
         protected override void Dispose(bool disposing)

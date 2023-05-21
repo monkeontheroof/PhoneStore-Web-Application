@@ -7,10 +7,27 @@
     Layout = "~/Views/Shared/_MasterLayout2.cshtml";
 }
 
-
+<br />
+<br />
+@if (TempData["ThongBaoSuccess"] != null)
+{
+    <div class="alert alert-success d-flex" role="alert">
+        <i class="bi bi-check-circle-fill">
+            @TempData["ThongBaoSuccess"].ToString()
+        </i>
+    </div>
+}
+@if (TempData["ThongBaoFailed"] != null)
+{
+    <div class="alert alert-danger d-flex" role="alert">
+        <i class="bi bi-exclamation-triangle-fill">
+            @TempData["ThongBaoFailed"].ToString()
+        </i>
+    </div>
+}
 
 <h2 class="white-text" style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
-<div  style="padding-left:15%; padding-right:15%">
+<div style="padding-left:15%; padding-right:15%">
     <table class="table table-bordered white-text">
         <thead>
             <tr>
