@@ -7,95 +7,64 @@
 
 
 
-<div>
-    <h4>ĐƠN HÀNG</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenNguoiNhan)
-        </dt>
+<div class="wrapper">
+    <div class="profile-card js-profile-card">
+        <div class="profile-card__img">
+            <img src="~/images/avatar.png" alt="profile card">
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenNguoiNhan)
-        </dd>
+        <div class="profile-card__cnt js-profile-cnt">
+            <div class="profile-card__name">@Html.DisplayFor(model => model.TenNguoiNhan)</div>
+            <div class="profile-card__txt">Mã Khách hàng: <strong>@Html.DisplayFor(model => model.MaKH)</strong> </div>
+            <div class="profile-card__txt">Số điện thoại: <strong>@Html.DisplayFor(model => model.SDTnhan)</strong> </div>
+            <div class="profile-card__txt">Tổng trị giá: <strong>@Html.DisplayFor(model => model.TriGia)</strong> </div>
+            <div class="profile-card__txt">Tình trạng: <strong>@Html.DisplayFor(model => model.TinhTrang)</strong> </div>
+            <div class="profile-card__txt">Ngày đặt hàng: <strong>@Html.DisplayFor(model => model.NgayDH)</strong> </div>
+            <div class="profile-card__txt">Hình thức thanh toán: <strong>@Html.DisplayFor(model => model.HTThanhToan)</strong> </div>
+            <div class="profile-card__txt">Hình thức giao hàng: <strong>@Html.DisplayFor(model => model.HTGiaohang)</strong> </div>
+            <div class="profile-card__txt">Nhân viên xử lý: <strong>@Html.DisplayFor(model => model.NhanVien.Hoten)</strong> </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SDTnhan)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SDTnhan)
-        </dd>
+            <div class="profile-card-loc">
+                <span class="profile-card-loc__icon">
+                    <svg class="icon"><use xlink:href="#icon-location"></use></svg>
+                </span>
+                <span class="profile-card-loc__txt">
+                    @Html.DisplayFor(model => model.DiaChiNhan)
+                </span>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChiNhan)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DiaChiNhan)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TriGia)
-        </dt>
+            <div class="profile-card-ctr">
+                @if (Session["Admin"] != null)
+                {
+                    <a class="profile-card__button button--orange" href="~/DonHangs/Edit?id=@Model.MaDH">Chỉnh sửa</a>
+                }
+                <a class="profile-card__button button--blue" href="~/DonHangs/Index">Trở về</a>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TriGia)
-        </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TinhTrang)
-        </dt>
+        <div class="profile-card-message js-message">
+            <form class="profile-card-form">
+                <div class="profile-card-form__container">
+                    <textarea placeholder="Say something..."></textarea>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TinhTrang)
-        </dd>
+                <div class="profile-card-form__bottom">
+                    <button class="profile-card__button button--blue js-message-close">
+                    </button>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayDH)
-        </dt>
+                    <button class="profile-card__button button--gray js-message-close">
+                        Cancel
+                    </button>
+                </div>
+            </form>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayDH)
-        </dd>
+            <div class="profile-card__overlay js-message-close"></div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HTThanhToan)
-        </dt>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.HTThanhToan)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HTGiaohang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HTGiaohang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.KhachHang.Hoten)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.KhachHang.Hoten)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NhanVien.Hoten)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NhanVien.Hoten)
-        </dd>
-
-    </dl>
 </div>
-
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaDH }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

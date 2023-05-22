@@ -32,7 +32,7 @@
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <h3>Thêm sản phẩm</h3>
+            <h3>Thêm Đơn hàng</h3>
 
             <div class="form-wrapper">
                 Khách hàng (*):
@@ -70,11 +70,11 @@
                 @Html.ValidationMessageFor(model => model.HTGiaohang, "", new { @class = "text-danger" })
             </div>
 
-            <input class="btn btn-success button1" type="submit" value="Xác nhận">
+            <input style="background-color:Green" type="submit" value="Xác nhận" class=" button1" />
         }
-        <div style="margin-left:238px;color:#ccc">
-            @Html.ActionLink("Quay lại danh sách", "Index")
-        </div>
+    <div style="margin-left:238px;color:#ccc">
+        <a style="margin-left: -15px;" class="button1" href="~/DonHangs/Index">Trở về</a>
+    </div>
     </div>
 
 </div>

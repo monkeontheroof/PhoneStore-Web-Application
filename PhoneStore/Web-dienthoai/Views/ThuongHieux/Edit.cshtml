@@ -25,12 +25,12 @@
     </div>
 }
 
-<div class="container" style="background-image: url('../../Images/library-background-form.jpg');">
+<div class="container" style="background-image: url('../../Images/gradient-background.jpg'); border-radius:8px;">
     <div class="inner">
         @using (Html.BeginForm("Edit", "ThuongHieux", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
-            <h3>Cập nhập thông tin Nhân viên</h3>
+            <h3>Cập nhập thông tin Thương hiệu</h3>
             <div class="form-group">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.MaTH)
