@@ -16,12 +16,16 @@ namespace Web_dienthoai.Controllers
         QLDienThoaiEntities db = new QLDienThoaiEntities();
 
         // GET: PhoneStore
-        public ActionResult Index()
+        public ActionResult Index(string s)
         {
 
-            var sanpham = db.SanPhams.ToList();
+            var sanpham = from sp in db.SanPhams select sp;
 
-
+            if (!String.IsNullOrEmpty(s))
+            {
+                sanpham = sanpham.Where(sp => sp.TenSP.Contains(s) ||
+                                        sp.ThuongHieu.TenTH.Contains(s));
+            }
             return View(sanpham);
         }
 
@@ -37,6 +41,8 @@ namespace Web_dienthoai.Controllers
         {
             var sanpham = db.SanPhams.Where(id => id.MaTH == MaTH).ToList();
 
+            var tenTH = db.ThuongHieux.Find(MaTH);
+            ViewBag.HangDT = tenTH.TenTH;
             return View(sanpham);
         }
 
