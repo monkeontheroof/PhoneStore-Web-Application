@@ -15,7 +15,7 @@ namespace Web_dienthoai.Models
 
         public string TenSP { get; set; }
 
-        public string HinhSP { get; set; }
+        public string Hinhminhhoa { get; set; }
 
         public double DonGia { get; set; }
 
@@ -34,6 +34,7 @@ namespace Web_dienthoai.Models
             this.TenSP = phone.TenSP;
             this.DonGia = double.Parse(phone.Gia.ToString());
             this.SoLuong = 1;
+            this.Hinhminhhoa = phone.HinhMinhHoa;
         }
     }
 }

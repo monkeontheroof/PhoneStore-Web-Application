@@ -1,6 +1,4 @@
-﻿<link rel="stylesheet" href="~/Content/Image.css" />
-
-<a class="thin-text" href="@Url.Action("HienThiGioHang", "GioHang")" style="text-decoration: none; color:black;">
-    <i class="black-text">Giỏ hàng: @ViewBag.TongSL</i> 
-  
+﻿<a href="@Url.Action("HienThiGioHang", "GioHang")"
+   style="text-decoration: none; color: red; font-weight: bold;">
+    <img style="width:30px;height:30px" src="~/Images/giohang1.png" /> (@ViewBag.TongSL)
 </a>

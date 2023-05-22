@@ -21,7 +21,7 @@ namespace Web_dienthoai.Models
         }
     
         public long MaDH { get; set; }
-        public int MaKH { get; set; }
+        public Nullable<int> MaKH { get; set; }
         public string TenNguoiNhan { get; set; }
         public string SDTnhan { get; set; }
         public string DiaChiNhan { get; set; }

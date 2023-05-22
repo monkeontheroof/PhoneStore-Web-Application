@@ -10,17 +10,18 @@
 <link rel="stylesheet" href="~/Content/Image.css" />
 
 
-<h3  class="text-white" >Hồ sơ của tôi</h3>
-<p class="text-white" >Quản lý thông tin hồ sở để bảo mật tài khoản</p>
+<br />
+<h3 class="" style="text-align:center;">Hồ sơ của tôi</h3>
+<p class="" style="text-align:center;">Quản lý thông tin hồ sở để bảo mật tài khoản</p>
 <hr />
 
-<table class="table table-bordered text-white">
-    <div class="form-group">
-        <div >Ảnh đại diện</div>  
-        <div class="col-md-10">
-            <input type="file" name="ImagePro" />
-        </div>
-    </div>
+<table class="table table-bordered  ">
+    @*<div class="form-group">
+            Ảnh đại diện
+            <div class="col-md-10">
+                <input type="file" name="ImagePro" />
+            </div>
+        </div>*@
 
     <tr>
         <td>Tên đăng nhập: </td>
@@ -49,17 +50,19 @@
     <tr>
         <td>Giới tính: </td>
         <td>
-            @Html.RadioButton("GioiTinh", "Nam") Nam
-            @Html.RadioButton("GioiTinh", "Nữ") Nữ
+            @kh.GioiTinh
+            @*@Html.RadioButton("GioiTinh", "Nam") Nam
+                @Html.RadioButton("GioiTinh", "Nữ") Nữ*@
         </td>
     </tr>
     <tr>
         <td>Ngày sinh: </td>
-        <td>
-            @Html.DropDownList("Day", Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Day")
-            @Html.DropDownList("Month", Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), "Month")
-            @Html.DropDownList("Year", Enumerable.Range(1900, 114).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Year")
-        </td>
+        <td>@kh.NgaySinh </td>
+        @*<td>
+                @Html.DropDownList("Day", Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Day")
+                @Html.DropDownList("Month", Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), "Month")
+                @Html.DropDownList("Year", Enumerable.Range(1900, 114).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Year")
+            </td>*@
     </tr>
 </table>
 

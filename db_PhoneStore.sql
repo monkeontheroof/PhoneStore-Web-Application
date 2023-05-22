@@ -58,7 +58,7 @@ CREATE TABLE KhachHang
 (
 	MaKH int IDENTITY(1,1) primary key NOT NULL,
 	Hoten nvarchar(50) NOT NULL,
-	SDT char(10) check(SDT in ('[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')),
+	SDT char(10) check(SDT like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
 	DiaChi nvarchar(100),
 	GioiTinh nvarchar(3) check (GioiTinh in(N'Nam',N'Nữ')),
 	NgaySinh  SMALLDATETIME,
@@ -71,7 +71,7 @@ GO
 CREATE TABLE NhanVien(
 	MaNV int IDENTITY(1,1) primary key,
 	Hoten nvarchar(50) NOT NULL,
-	SDT char(11) check(SDT in ('[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]','[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')),
+	SDT char(10) check(SDT like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
 	GioiTinh nvarchar(3) check (GioiTinh in(N'Nam',N'Nữ')),
 	DiaChi nvarchar(100),
 	NgaySinh smalldatetime,
@@ -90,7 +90,7 @@ GO
 CREATE TABLE DonHang
 (
 	MaDH BIGINT IDENTITY(1,1) primary key NOT NULL,
-	MaKH int NOT NULL,
+	MaKH int,
 	TenNguoiNhan nvarchar(50) NOT NULL,
 	SDTnhan char(10)  NOT NULL,
 	DiaChiNhan nvarchar(100)  NOT NULL,
@@ -212,5 +212,4 @@ values('test', 'AD');
 
 insert into TaiKhoanNV values(1, 'admin', 'Admin@123');
 
-select * from ThongSo
-
+select * from DonHang

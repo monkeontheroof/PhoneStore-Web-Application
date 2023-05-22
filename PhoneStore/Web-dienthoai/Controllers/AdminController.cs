@@ -23,7 +23,7 @@ namespace Web_dienthoai.Controllers
             ViewBag.Sanpham = db.SanPhams.Count();
             var doanhthu = from l in db.ChiTietDHs
                            select l;
-            ViewBag.Doanhthu = (decimal)db.DonHangs.Sum(id => id.TriGia);
+            ViewBag.Doanhthu = db.DonHangs.Sum(id => id.TriGia);
             var donhang = db.DonHangs.ToList();
             return View(donhang);
         }
