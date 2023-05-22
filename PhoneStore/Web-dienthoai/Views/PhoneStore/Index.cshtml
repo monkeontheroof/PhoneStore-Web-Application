@@ -14,46 +14,50 @@
 
 
 @*Iphone*@
-<h3 class="align: text-center" style="color: white; font-weight: bold;">iPhone</h3>
+<h3 class="align: text-center" style="font-weight: bold;">iPhone</h3>
 <br />
 <div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach (var item in Model.Where(id => id.MaTH == "IP"))
     {
         <div class="col">
-            <div class="card">
+            <div class="card cardt">
                 <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })">
-                    <img class="card-img-top my-image"
+                    <img class="card-img-top cardt-img-top my-image"
                          src="~/Images/ProductView/@item.HinhMinhHoa" alt="Card image">
                 </a>
                 <div class="card-body ">
-                    <h4 class="card-title" style="text-align: center;">@item.TenSP</h4>
-                    <p class="card-text" style="text-align: center;">@item.MaSP</p>
-                    <p class="card-text" style="text-align: center;">@item.Gia VND</p>
+                    <h4 class="card-title cardt-title" style="text-align: center;">@item.TenSP</h4>
+                    <p class="card-text" style="text-align: center;">@String.Format("{0:0,0}", @item.Gia) VND</p>
+
+                    <div style=" display: flex; justify-content: center;">  <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })" class="btn btn-primary">Mua ngay</a> </div>
+
                 </div>
             </div>
         </div>
     }
 </div>
 
+
 <hr />
 <br />
 
 @*Samsung*@
-<h3 class="align: text-center" style="color: white; font-weight: bold;">Samsung</h3>
+<h3 class="align: text-center" style="font-weight: bold;">Samsung</h3>
 <br />
 <div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach (var item in Model.Where(id => id.MaTH == "SS"))
     {
         <div class="col">
-            <div class="card">
+            <div class="card cardt">
                 <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })">
-                    <img class="card-img-top my-image"
+                    <img class="card-img-top cardt-img-top my-image"
                          src="~/Images/ProductView/@item.HinhMinhHoa" alt="Card image">
                 </a>
                 <div class="card-body ">
-                    <h4 class="card-title style=" text-align: center;"">@item.TenSP</h4>
-                    <p class="card-text" style="text-align: center;">@item.MaSP</p>
-                    <p class="card-text" style="text-align: center;">@item.Gia VND</p>
+                    <h4 class="card-title cardt-title" style="text-align: center;">@item.TenSP</h4>
+                    <p class="card-text" style="text-align: center;">@String.Format("{0:0,0}", @item.Gia) VND</p>
+                    <div style=" display: flex; justify-content: center;">  <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })" class="btn btn-primary">Mua ngay</a> </div>
+
                 </div>
             </div>
         </div>
@@ -65,21 +69,22 @@
 <br />
 
 @*Xiaomi*@
-<h3 class="align: text-center" style="color: white; font-weight: bold;">Huawei</h3>
+<h3 class="align: text-center" style="font-weight: bold;">Huawei</h3>
 <br />
 <div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach (var item in Model.Where(id => id.MaTH == "HW"))
     {
         <div class="col">
-            <div class="card">
+            <div class="card cardt">
                 <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })">
-                    <img class="card-img-top my-image"
+                    <img class="card-img-top cardt-img-top my-image"
                          src="~/Images/ProductView/@item.HinhMinhHoa" alt="Card image">
                 </a>
                 <div class="card-body ">
-                    <h4 class="card-title" style="text-align: center;">@item.TenSP</h4>
-                    <p class="card-text" style="text-align: center;">@item.MaSP</p>
-                    <p class="card-text" style="text-align: center;">@item.Gia VND</p>
+                    <h4 class="card-title cardt-title" style="text-align: center;">@item.TenSP</h4>
+                    <p class="card-text" style="text-align: center;">@String.Format("{0:0,0}", @item.Gia) VND</p>
+                    <div style=" display: flex; justify-content: center;">  <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })" class="btn btn-primary">Mua ngay</a> </div>
+
                 </div>
             </div>
         </div>

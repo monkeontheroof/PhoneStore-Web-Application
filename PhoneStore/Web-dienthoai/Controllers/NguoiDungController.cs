@@ -87,6 +87,7 @@ namespace Web_dienthoai.Controllers
                     if (khachhang != null)
                     {
                         ViewBag.ThongBao = "Đăng nhập thành công!";
+                        ViewBag.name = khachhang.Hoten;
                         //Lưu > session
                         Session["KhachHang"] = khachhang;
                         return RedirectToAction("Index", "PhoneStore");

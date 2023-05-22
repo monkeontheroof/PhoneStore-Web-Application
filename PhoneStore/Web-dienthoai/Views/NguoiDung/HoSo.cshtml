@@ -1,4 +1,4 @@
-﻿@using Web_dienthoai.Models;
+@using Web_dienthoai.Models;
 @model KhachHang
 
 @{
@@ -10,115 +10,61 @@
 <link rel="stylesheet" href="~/Content/Image.css" />
 
 
-<h3 class="text-white">Hồ sơ của tôi</h3>
-<p class="text-white">Quản lý thông tin hồ sở để bảo mật tài khoản</p>
+<br />
+<h3 class="" style="text-align:center;">Hồ sơ của tôi</h3>
+<p class="" style="text-align:center;">Quản lý thông tin hồ sở để bảo mật tài khoản</p>
 <hr />
 
-@*<table class="table table-bordered text-white">
-        <div class="form-group">
-            <div >Ảnh đại diện</div>
+<table class="table table-bordered  ">
+    @*<div class="form-group">
+            Ảnh đại diện
             <div class="col-md-10">
                 <input type="file" name="ImagePro" />
             </div>
-        </div>
-        <tr>
-            <td>Tên đăng nhập: </td>
-            <td>@kh.Username</td>
-        </tr>
-        <tr>
-            <td>Họ tên: </td>
-            <td><input value="@kh.Hoten" /></td>
-        </tr>
-        <tr>
-            <td>Email: </td>
-            <td><input value="@kh.Email" /></td>
-        </tr>
-        <tr>
-            <td>Số điện thoại: </td>
-            <td><input value="@kh.SDT" /></td>
-        </tr>
-        <tr>
-            <td>Địa chỉ: </td>
-            <td><input value="@kh.DiaChi" /></td>
-        </tr>
-        <tr>
-            <td>Điện thoại: </td>
-            <td><input value="@kh.SDT" /></td>
-        </tr>
-        <tr>
-            <td>Giới tính: </td>
-            <td>
-                @Html.RadioButton("GioiTinh", "Nam") Nam
-                @Html.RadioButton("GioiTinh", "Nữ") Nữ
-            </td>
-        </tr>
-        <tr>
-            <td>Ngày sinh: </td>
-            <td>
+        </div>*@
+
+    <tr>
+        <td>Tên đăng nhập: </td>
+        <td>@kh.Username</td>
+    </tr>
+    <tr>
+        <td>Họ tên: </td>
+        <td><input value="@kh.Hoten" /></td>
+    </tr>
+    <tr>
+        <td>Email: </td>
+        <td><input value="@kh.Email" /></td>
+    </tr>
+    <tr>
+        <td>Số điện thoại: </td>
+        <td><input value="@kh.SDT" /></td>
+    </tr>
+    <tr>
+        <td>Địa chỉ: </td>
+        <td><input value="@kh.DiaChi" /></td>
+    </tr>
+    <tr>
+        <td>Điện thoại: </td>
+        <td><input value="@kh.SDT" /></td>
+    </tr>
+    <tr>
+        <td>Giới tính: </td>
+        <td>
+            @kh.GioiTinh
+            @*@Html.RadioButton("GioiTinh", "Nam") Nam
+                @Html.RadioButton("GioiTinh", "Nữ") Nữ*@
+        </td>
+    </tr>
+    <tr>
+        <td>Ngày sinh: </td>
+        <td>@kh.NgaySinh </td>
+        @*<td>
                 @Html.DropDownList("Day", Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Day")
                 @Html.DropDownList("Month", Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), "Month")
                 @Html.DropDownList("Year", Enumerable.Range(1900, 114).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Year")
-            </td>
-        </tr>
-    </table>*@
-
-<div class="wrapper">
-    <div class="profile-card js-profile-card">
-        <div class="profile-card__img">
-            <img src="~/images/avatar.png" alt="profile card">
-        </div>
-
-        <div class="profile-card__cnt js-profile-cnt">
-            <div class="profile-card__name">@kh.Hoten</div>
-            @*<div class="profile-card__txt">Mã khách hàng: <strong>@kh.MaKH</strong> </div>*@
-            <div class="profile-card__txt">Giới tính: <strong>@kh.GioiTinh</strong> </div>
-            <div class="profile-card__txt">Ngày Sinh: <strong>@kh.NgaySinh</strong> </div>
-            <div class="profile-card__txt">Số điện thoại: <strong>@kh.SDT</strong> </div>
-            <div class="profile-card__txt">Email: <strong>@kh.Email</strong> </div>
-            <div class="profile-card__txt">Tên người dùng: <strong>@kh.Username</strong> </div>
-
-            <div class="profile-card-loc">
-                <span class="profile-card-loc__icon">
-                    <svg class="icon"><use xlink:href="#icon-location"></use></svg>
-                </span>
-                <span class="profile-card-loc__txt">
-                    @kh.DiaChi
-                </span>
-            </div>
-
-
-
-            <div class="profile-card-ctr">
-
-                <a class="profile-card__button button--orange" href="#">Chỉnh sửa</a>
-                <a class="profile-card__button button--blue" href="~/PhoneStore/Index">Trở về</a>
-
-            </div>
-
-        </div>
-
-        <div class="profile-card-message js-message">
-            <form class="profile-card-form">
-                <div class="profile-card-form__container">
-                    <textarea placeholder="Say something..."></textarea>
-                </div>
-
-                <div class="profile-card-form__bottom">
-                    <button class="profile-card__button button--blue js-message-close">
-                    </button>
-
-                    <button class="profile-card__button button--gray js-message-close">
-                        Cancel
-                    </button>
-                </div>
-            </form>
-
-            <div class="profile-card__overlay js-message-close"></div>
-        </div>
-
-    </div>
-
-</div>
+            </td>*@
+    </tr>
+</table>
 
 
 

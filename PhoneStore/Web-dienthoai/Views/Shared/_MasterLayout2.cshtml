@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html style="background-color: #262626; ">
+<html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
@@ -16,7 +16,7 @@
 
 <body>
 
-    <header>
+    <header style="background-color: #D4FAFC; ">
         @*Logo*@
         <div class="head">
             <div class="logo">
@@ -32,27 +32,27 @@
             <i class="fa fa-search"></i>
         </div>*@
 
-            <div class="ml-auto">
-                <i class="bi bi-bag">@Html.Action("GioHangPartial", "GioHang")</i>
-            </div>
-            
-
+        <div class="">
+            <i style="margin-right:5px">@Html.Action("GioHangPartial", "GioHang")</i>
             @if (Session["KhachHang"] != null)
             {
-                <div class="ml-auto user-profile">
-                    <a href="@Url.Action("HoSo", "NguoiDung")"><i class="fa fa-user"></i></a>
-                </div>
-
-                <div class="ml-auto user-profile">
-                    <a href="@Url.Action("Logout", "NguoiDung")"><i class="fa fa-sign-out"></i></a>
-                </div>
+                <a class="thin-text" href="@Url.Action("HoSo", "NguoiDung")"
+                   style="text-decoration: none; color: black; font-weight: bold;">
+                    <img style="width:30px;height:30px" src="~/Images/user.png" /> @ViewBag.name
+                </a>
+                <a class="thin-text" href="@Url.Action("Logout", "NguoiDung")"
+                   style="text-decoration: none; color: black; font-weight: bold;">
+                    <i class="fa fa-sign-out"></i>
+                </a>
             }
             else
             {
-                <div class="user-profile">
-                    <a href="@Url.Action("DangNhap", "NguoiDung")"><i class="fa fa-user"></i></a>
-                </div>
+                <a class="thin-text" href="@Url.Action("DangNhap", "NguoiDung")"
+                   style="text-decoration: none; color: black; font-weight: bold;">
+                    <img style="width:30px;height:30px" src="~/Images/user.png" /> @ViewBag.name
+                </a>
             }
+        </div>
         </div>
 
 
@@ -65,15 +65,6 @@
 
     @*Image slideshow*@
     <div id="div-main">
-
-
-
-        <br>
-
-
-
-        <br /> <br />
-
         @RenderBody()
     </div>
 

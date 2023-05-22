@@ -173,9 +173,9 @@
       <DependentUpon>PhoneStoreModel.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PhoneStoreModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>PhoneStoreModel.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\PhoneStoreModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -184,9 +184,6 @@
     </Compile>
     <Compile Include="Models\ProductView.cs" />
     <Compile Include="Models\SanPham.cs">
-      <DependentUpon>PhoneStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>PhoneStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TaiKhoanNV.cs">
@@ -269,6 +266,7 @@
     <Content Include="Content\DashboardContent.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\FontText.css" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\Image.css" />
     <Content Include="Content\mystyle.css" />
@@ -514,7 +512,10 @@
     <Content Include="Images\avatar.png" />
     <Content Include="Images\brand_logo.png" />
     <Content Include="Images\delete.jpg" />
+    <Content Include="Images\dola.png" />
+    <Content Include="Images\giohang1.png" />
     <Content Include="Images\gradient-background-colorful-background-iphone-background-7680x4320-8653.jpg" />
+    <Content Include="Images\gradient-background.jpg" />
     <Content Include="Images\home-image.png" />
     <Content Include="Images\iphoneslide.jpg" />
     <Content Include="Images\iphoneslide2.jpg" />
@@ -522,6 +523,7 @@
     <Content Include="Images\library-background-form.jpg" />
     <Content Include="Images\Logo-StudioGear-3-red---black.png" />
     <Content Include="Images\Mac2880-800-1920x533-1.png" />
+    <Content Include="Images\momo.png" />
     <Content Include="Images\Phones\huawei-honor20-1.jpg" />
     <Content Include="Images\Phones\huawei-honor20-2.jpg" />
     <Content Include="Images\Phones\huawei-honor20-3.jpg" />
@@ -747,6 +749,10 @@
     <Content Include="Images\slideshow-1.jpg" />
     <Content Include="Images\slideshow-2.jpg" />
     <Content Include="Images\slideshow-3.jpg" />
+    <Content Include="Images\tien.jpg" />
+    <Content Include="Images\user.png" />
+    <Content Include="Images\xe.png" />
+    <Content Include="Images\xe1.png" />
     <Content Include="Models\PhoneStoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PhoneStoreModel.edmx</DependentUpon>
@@ -754,8 +760,8 @@
     </Content>
     <Content Include="Models\PhoneStoreModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PhoneStoreModel.edmx</DependentUpon>
       <LastGenOutput>PhoneStoreModel.cs</LastGenOutput>
+      <DependentUpon>PhoneStoreModel.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -1163,6 +1169,10 @@
     <Content Include="Views\ThongSoes\Details.cshtml" />
     <Content Include="Views\ThongSoes\Edit.cshtml" />
     <Content Include="Views\ThongSoes\Index.cshtml" />
+    <Content Include="Views\GioHang\ThongTinMuaHang.cshtml" />
+    <Content Include="Views\GioHang\DatHangThanhCong.cshtml" />
+    <Content Include="Views\GioHang\CauHoiDKTK.cshtml" />
+    <Content Include="Views\GioHang\ThongTinDKTK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

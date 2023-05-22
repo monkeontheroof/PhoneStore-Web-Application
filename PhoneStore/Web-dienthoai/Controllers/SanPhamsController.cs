@@ -105,12 +105,25 @@ namespace Web_dienthoai.Controllers
                 }
 
                 sanPham.HinhMinhHoa = fileName;
-
-
                 sanPham.Tinhtrang = "Còn";
-                db.SanPhams.Add(sanPham);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (db.SanPhams.Any(s => s.TenSP == sanPham.TenSP && s.MaTH == sanPham.MaTH))
+                {
+                    TempData["ThongBaoFailed"] = "Sản phẩm đã tồn tại!";
+                    return RedirectToAction("Create");
+                }
+
+                try
+                {
+                    db.SanPhams.Add(sanPham);
+                    db.SaveChanges();
+                    TempData["ThongBaoSuccess"] = "Thêm sản phẩm thành công!";
+                    return RedirectToAction("Create");
+                }
+                catch(Exception ex)
+                {
+                    TempData["ThongBaoFailed"] = "Thêm sản phẩm thất bại!";
+                    return RedirectToAction("Create");
+                }
             }
 
             ViewBag.MaTH = new SelectList(db.ThuongHieux, "MaTH", "TenTH", sanPham.MaTH);
@@ -160,9 +173,19 @@ namespace Web_dienthoai.Controllers
                     sanPham.HinhMinhHoa = fileName;
                     Hinhminhhoa.SaveAs(path);
                 }
-                db.Entry(sanPham).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Details", "SanPhams", new { id = sanPham.IdSP});
+                try
+                {
+                    db.Entry(sanPham).State = EntityState.Modified;
+                    db.SaveChanges();
+                    TempData["ThongBaoSuccess"] = sanPham.TenSP + " đã được cập nhật!";
+                    return RedirectToAction("Edit", new {id = sanPham.IdSP});
+                }
+                catch (Exception ex)
+                {
+                    TempData["ThongBaoFailed"] = "Cập nhật thất bại!";
+                    return RedirectToAction("Edit", new { id = sanPham.IdSP });
+                }
+                
             }
             ViewBag.MaTH = new SelectList(db.ThuongHieux, "MaTH", "TenTH", sanPham.MaTH);
             ViewBag.IdSP = new SelectList(db.ThongSoes, "IdSP", "CongNgheManHinh", sanPham.IdSP);
@@ -192,12 +215,25 @@ namespace Web_dienthoai.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ThongSo thongSo = db.ThongSoes.Find(id);
+            var thongSo = db.ThongSoes.Where(ts => ts.IdSP== id).ToList();
             SanPham sanPham = db.SanPhams.Find(id);
-            db.ThongSoes.Remove(thongSo);
-            db.SanPhams.Remove(sanPham);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            foreach(var item in thongSo)
+            {
+                db.ThongSoes.Remove(item);
+            }
+            try
+            {
+                db.SanPhams.Remove(sanPham);
+                db.SaveChanges();
+                TempData["ThongBaoSuccess"] = "Xóa thành công " + sanPham.TenSP;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ThongBaoFailed"] = "Xóa thất bại!";
+                return RedirectToAction("Index");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

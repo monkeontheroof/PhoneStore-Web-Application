@@ -76,6 +76,11 @@ namespace Web_dienthoai.Controllers
             if (Session["Admin"] == null)
                 return RedirectToAction("Login", "Admin");
 
+            List<SelectListItem> gioitinh = new List<SelectListItem>();
+            gioitinh.Add(new SelectListItem { Text = "Nam", Value = "Nam" });
+            gioitinh.Add(new SelectListItem { Text = "Nữ", Value = "Nữ" });
+            ViewBag.Gioitinh = gioitinh;
+
             return View();
         }
 

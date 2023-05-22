@@ -15,7 +15,7 @@ namespace Web_dienthoai.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            if (Session["Admin"] == null)
+            if (Session["Admin"] == null && Session["Nhanvien"] == null)
                 return RedirectToAction("Login", "Admin");
 
             ViewBag.Donhang = db.DonHangs.Count();
@@ -55,7 +55,12 @@ namespace Web_dienthoai.Controllers
                 }
                 else
                 {
-                    Session["Admin"] = adminDB;
+                    if (adminDB.NhanVien.ChucVu == "NV")
+                        Session["Nhanvien"] = adminDB;
+
+                    else if (adminDB.NhanVien.ChucVu == "AD")
+                        Session["Admin"] = adminDB;
+
                     Session["Username"] = adminDB.Username;
                     ViewBag.ThongBao = "Đăng nhập thành công!";
                     return RedirectToAction("Index", "Admin");
@@ -68,6 +73,8 @@ namespace Web_dienthoai.Controllers
 
         public ActionResult Logout()
         {
+            Session["Admin"] = null;
+            Session["Nhanvien"] = null;
             Session.Abandon();
             return RedirectToAction("Login");
         }
@@ -75,13 +82,21 @@ namespace Web_dienthoai.Controllers
 
         public ActionResult AdminProfile()
         {
-            if (Session["Admin"] == null)
+            if (Session["Admin"] == null && Session["Nhanvien"] == null)
                 return RedirectToAction("Login", "Admin");
 
-            TaiKhoanNV ad = Session["Admin"] as TaiKhoanNV;
-            var userad = db.NhanViens.FirstOrDefault(un => un.TaiKhoanNV.Username == ad.Username);
-
-            return View(userad);
+            else if (Session["Admin"] != null)
+            {
+                TaiKhoanNV ad = Session["Admin"] as TaiKhoanNV;
+                var userad = db.NhanViens.FirstOrDefault(un => un.TaiKhoanNV.Username == ad.Username);
+                return View(userad);
+            }
+            else
+            {
+                TaiKhoanNV nv = Session["Nhanvien"] as TaiKhoanNV;
+                var userNV = db.NhanViens.FirstOrDefault(stf => stf.TaiKhoanNV.Username == nv.Username); 
+                return View(userNV);
+            }
         }
 
 

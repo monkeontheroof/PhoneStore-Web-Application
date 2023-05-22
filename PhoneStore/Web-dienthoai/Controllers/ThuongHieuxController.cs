@@ -90,11 +90,31 @@ namespace Web_dienthoai.Controllers
                 return RedirectToAction("Login", "Admin");
 
 
+
             if (ModelState.IsValid)
             {
-                db.ThuongHieux.Add(thuongHieu);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if(db.ThuongHieux.Any(th => th.TenTH == thuongHieu.TenTH))
+                {
+                    TempData["ThongBaoFailed"] = "Đã tồn tại thương hiệu " + thuongHieu.TenTH;
+                    return RedirectToAction("Create");
+                }
+                else if(db.ThuongHieux.Any(th => th.MaTH == thuongHieu.MaTH))
+                {
+                    TempData["ThongBaoFailed"] = "Đã tồn tại mã thương hiệu " + thuongHieu.MaTH;
+                    return RedirectToAction("Create");
+                }
+                try
+                {
+                    db.ThuongHieux.Add(thuongHieu);
+                    db.SaveChanges();
+                    TempData["ThongBaoSuccess"] = "Thêm thành công thương hiệu " + thuongHieu.TenTH.ToString();
+                    return RedirectToAction("Create");
+                }
+                catch (Exception ex)
+                {
+                    TempData["ThongBaoFailed"] = "Thêm thương hiệu thất bại";
+                    return RedirectToAction("Create");
+                }
             }
 
             return View(thuongHieu);
@@ -134,9 +154,23 @@ namespace Web_dienthoai.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Entry(thuongHieu).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (db.ThuongHieux.Any(th => th.TenTH == thuongHieu.TenTH))
+                {
+                    TempData["ThongBaoFailed"] = "Đã tồn tại thương hiệu " + thuongHieu.TenTH;
+                    return RedirectToAction("Edit", new { id = thuongHieu.MaTH });
+                }
+                try
+                {
+                    db.Entry(thuongHieu).State = EntityState.Modified;
+                    db.SaveChanges();
+                    TempData["ThongBaoSuccess"] = "Cập nhật thành công " + thuongHieu.TenTH;
+                    return RedirectToAction("Edit", new {id = thuongHieu.MaTH});
+                }
+                catch(Exception ex)
+                {
+                    TempData["ThongBaoFailed"] = "Cập nhật thất bại!";
+                    return RedirectToAction("Edit", new { id = thuongHieu.MaTH });
+                }
             }
             return View(thuongHieu);
         }
@@ -172,9 +206,19 @@ namespace Web_dienthoai.Controllers
 
 
             ThuongHieu thuongHieu = db.ThuongHieux.Find(id);
-            db.ThuongHieux.Remove(thuongHieu);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.ThuongHieux.Remove(thuongHieu);
+                db.SaveChanges();
+                TempData["ThongBaoSuccess"] = "Xóa thành công thương hiệu " + thuongHieu.TenTH.ToString();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ThongBaoFailed"] = "Xóa thất bại!";
+                return RedirectToAction("Index");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

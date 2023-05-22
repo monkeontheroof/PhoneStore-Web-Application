@@ -21,7 +21,7 @@
             <PropertyRef Name="MaDH" />
           </Key>
           <Property Name="MaDH" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaKH" Type="int" Nullable="false" />
+          <Property Name="MaKH" Type="int" />
           <Property Name="TenNguoiNhan" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SDTnhan" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="DiaChiNhan" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -72,7 +72,7 @@
           </Key>
           <Property Name="MaNV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Hoten" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SDT" Type="char" MaxLength="11" />
+          <Property Name="SDT" Type="char" MaxLength="10" />
           <Property Name="GioiTinh" Type="nvarchar" MaxLength="3" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="100" />
           <Property Name="NgaySinh" Type="smalldatetime" />
@@ -91,16 +91,6 @@
           <Property Name="HinhMinhHoa" Type="nvarchar" MaxLength="50" />
           <Property Name="Tinhtrang" Type="ntext" />
           <Property Name="MaTH" Type="char" MaxLength="2" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TaiKhoanNV">
           <Key>
@@ -151,7 +141,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DonHang_KhachHang">
-          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="1" />
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
           <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KhachHang">
@@ -242,7 +232,6 @@
           <EntitySet Name="Mau" EntityType="Self.Mau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoanNV" EntityType="Self.TaiKhoanNV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongSo" EntityType="Self.ThongSo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThuongHieu" EntityType="Self.ThuongHieu" Schema="dbo" store:Type="Tables" />
@@ -306,7 +295,7 @@
             <PropertyRef Name="MaDH" />
           </Key>
           <Property Name="MaDH" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaKH" Type="Int32" Nullable="false" />
+          <Property Name="MaKH" Type="Int32" />
           <Property Name="TenNguoiNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SDTnhan" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="DiaChiNhan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
@@ -364,7 +353,7 @@
           </Key>
           <Property Name="MaNV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Hoten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SDT" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="SDT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="GioiTinh" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NgaySinh" Type="DateTime" Precision="0" />
@@ -389,16 +378,6 @@
           <NavigationProperty Name="Maus" Relationship="Self.FK_Mau_SanPham" FromRole="SanPham" ToRole="Mau" />
           <NavigationProperty Name="ThuongHieu" Relationship="Self.FK_SanPham_ThuongHieu" FromRole="SanPham" ToRole="ThuongHieu" />
           <NavigationProperty Name="ThongSoes" Relationship="Self.FK_ThongSo_SanPham" FromRole="SanPham" ToRole="ThongSo" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TaiKhoanNV">
           <Key>
@@ -452,7 +431,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DonHang_KhachHang">
-          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="1" />
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
           <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KhachHang">
@@ -543,7 +522,6 @@
           <EntitySet Name="Maus" EntityType="Self.Mau" />
           <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
           <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TaiKhoanNVs" EntityType="Self.TaiKhoanNV" />
           <EntitySet Name="ThongSoes" EntityType="Self.ThongSo" />
           <EntitySet Name="ThuongHieux" EntityType="Self.ThuongHieu" />
@@ -678,17 +656,6 @@
                 <ScalarProperty Name="HinhMinhHoa" ColumnName="HinhMinhHoa" />
                 <ScalarProperty Name="Tinhtrang" ColumnName="Tinhtrang" />
                 <ScalarProperty Name="MaTH" ColumnName="MaTH" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="db_PhoneStoreModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

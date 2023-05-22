@@ -32,7 +32,6 @@ namespace Web_dienthoai.Models
         public virtual DbSet<Mau> Maus { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoanNV> TaiKhoanNVs { get; set; }
         public virtual DbSet<ThongSo> ThongSoes { get; set; }
         public virtual DbSet<ThuongHieu> ThuongHieux { get; set; }
