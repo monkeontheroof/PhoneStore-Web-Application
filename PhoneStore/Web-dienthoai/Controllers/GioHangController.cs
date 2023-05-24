@@ -229,8 +229,10 @@ namespace Web_dienthoai.Controllers
                 else
                     return View();
             }
-            if (dh.HTGiaohang == "Giao hàng tiêu chuẩn") dh.TriGia += 30000;
-            else dh.TriGia += 66000;
+            if (dh.HTGiaohang == "Giao hàng tiêu chuẩn") 
+                dh.TriGia += 30000;
+            else 
+                dh.TriGia += 66000;
             db.DonHangs.Add(dh);//luu don hang vao database
             db.SaveChanges(); //luu truoc khi tạo chi tiết don hàng để có mã đơn hàng trong database
 
