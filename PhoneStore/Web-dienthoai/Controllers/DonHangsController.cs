@@ -36,7 +36,7 @@ namespace Web_dienthoai.Controllers
 
             var donHangs = from l in db.DonHangs
                            select l;
-            donHangs = donHangs.Where(i => i.TinhTrang.Contains("Đang xử lý"));
+            donHangs = donHangs.Where(i => i.TinhTrang.Contains("Chờ duyệt") || i.TinhTrang.Contains("Đang xử lý"));
             if (!String.IsNullOrEmpty(s))
             {
                 donHangs = donHangs.Where(id => id.MaDH.ToString().Contains(s) || id.TenNguoiNhan.Contains(s) || id.NgayDH.ToString().Contains(s) || id.SDTnhan.ToString().Contains(s));
@@ -140,7 +140,7 @@ namespace Web_dienthoai.Controllers
         }
 
         // GET: DonHangs/Edit/5
-        public ActionResult Edit(long? id)
+        public ActionResult Edit(int id)
         {
             if (Session["Admin"] == null)
                 return RedirectToAction("Login", "Admin");

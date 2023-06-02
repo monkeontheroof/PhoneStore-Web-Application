@@ -34,6 +34,7 @@
             <div class="form-group">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.MaKH)
+                @Html.HiddenFor(model => model.MaDH)
 
                 <div class="form-wrapper">
                     <p class="col-md-10">Tên người nhận</p>
