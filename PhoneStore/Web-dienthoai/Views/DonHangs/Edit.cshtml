@@ -70,13 +70,7 @@
                 </div>
             </div>
 
-            <div class="form-wrapper">
-                <p class="col-md-10">Tình trạng đơn hàng</p>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TinhTrang, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
-                </div>
-            </div>
+
 
             <div class="form-wrapper">
                 <p class="col-md-10">Ngày đặt hàng</p>
@@ -89,8 +83,25 @@
             <div class="form-wrapper">
                 <p class="col-md-10">Hình thức giao hàng</p>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.HTGiaohang, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.HTGiaohang,
+            new List<SelectListItem>
+            {
+                new SelectListItem{Text="Giao hàng tiêu chuẩn", Value="Giao hàng tiêu chuẩn"},
+                new SelectListItem{Text="Giao hàng hỏa tốc", Value="Giao hàng hỏa tốc" }}, "Lựa chọn", new { @class = "form-control", required = "required" })
                     @Html.ValidationMessageFor(model => model.HTGiaohang, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-wrapper">
+                <p class="col-md-10">Tình trạng đơn hàng</p>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TinhTrang,
+            new List<SelectListItem>
+            {
+                new SelectListItem{Text="Chờ duyệt", Value="Chờ duyệt"},
+                new SelectListItem{Text="Đang xử lý", Value="Đang xử lý" },
+                new SelectListItem{Text="Đã giao", Value="Đã giao" }}, "Lựa chọn", new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
                 </div>
             </div>
 

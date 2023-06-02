@@ -180,7 +180,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="/Admin/Index">
-                    <img src="~/Images/dashboard-logo.png" alt="Logo"/>
+                    <img src="~/Images/dashboard-logo.png" alt="Logo" />
                 </a>
 
             </div>
@@ -193,7 +193,7 @@
                             </a>
                         </li>
                         @*@if (Session["Role"] != null && Session["Role"].ToString() == "AD")
-        {*@
+                        {*@
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-mobile-phone"></i>Quản lý sản phẩm
@@ -224,9 +224,18 @@
                             </ul>
                         </li>
 
-                        <li class="d-flex align-content-center ">
-                            <i class="fas fa-users" style="padding: 20px 0"></i>
-                            <a class="w-100 ml-3" href="/NhanViens/Index">Quản lí nhân viên</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-user"></i>Quản lý nhân viên
+                            </a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="/NhanViens/Index">Nhân viên</a>
+                                </li>
+                                <li>
+                                    <a href="/TaiKhoanNVs/Index">Tài khoản</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="d-flex align-content-center ">
                             <i class="fas fa-id-card" style="padding: 20px 0"></i>
@@ -306,7 +315,7 @@
         <script src="~/table/js/bootstrap.min.js"></script>
         <script src="~/table/js/main.js"></script>
 
-
+        <script src="~/Scripts/chosen.jquery.js"></script>
     </div>
 </body>
 

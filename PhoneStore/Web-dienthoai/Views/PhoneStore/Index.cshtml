@@ -1,5 +1,6 @@
 ﻿@using Web_dienthoai.Models;
-@model IEnumerable<SanPham>
+@using PagedList.Mvc;
+@model PagedList.PagedList<SanPham>
 
 
 @{
@@ -24,7 +25,7 @@
 @*<h3 class="align: text-center" style="font-weight: bold;">iPhone</h3>*@
 <br />
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    @foreach (var item in Model.Where(id => id.MaTH == "IP"))
+    @foreach (var item in Model)
     {
         <div class="col">
             <div class="card cardt">
@@ -45,57 +46,22 @@
 </div>
 
 
-<hr />
+<!-- Thêm mã phân trang -->
 <br />
-
-@*Samsung*@
-@*<h3 class="align: text-center" style="font-weight: bold;">Samsung</h3>*@
-<br />
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    @foreach (var item in Model.Where(id => id.MaTH == "SS"))
-    {
-        <div class="col">
-            <div class="card cardt">
-                <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })">
-                    <img class="card-img-top cardt-img-top my-image"
-                         src="~/Images/ProductView/@item.HinhMinhHoa" alt="Card image">
-                </a>
-                <div class="card-body ">
-                    <h4 class="card-title cardt-title" style="text-align: center;">@item.TenSP</h4>
-                    <p class="card-text" style="text-align: center;">@String.Format("{0:0,0}", @item.Gia) VND</p>
-                    <div style=" display: flex; justify-content: center;">  <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })" class="btn btn-primary">Mua ngay</a> </div>
-
-                </div>
-            </div>
-        </div>
-    }
-</div>
-
-
-<hr />
-<br />
-
-@*Xiaomi*@
-@*<h3 class="align: text-center" style="font-weight: bold;">Huawei</h3>*@
-<br />
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    @foreach (var item in Model.Where(id => id.MaTH == "HW"))
-    {
-        <div class="col">
-            <div class="card cardt">
-                <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })">
-                    <img class="card-img-top cardt-img-top my-image"
-                         src="~/Images/ProductView/@item.HinhMinhHoa" alt="Card image">
-                </a>
-                <div class="card-body ">
-                    <h4 class="card-title cardt-title" style="text-align: center;">@item.TenSP</h4>
-                    <p class="card-text" style="text-align: center;">@String.Format("{0:0,0}", @item.Gia) VND</p>
-                    <div style=" display: flex; justify-content: center;">  <a href="@Url.Action("Details", "PhoneStore", new { id = item.IdSP })" class="btn btn-primary">Mua ngay</a> </div>
-
-                </div>
-            </div>
-        </div>
-    }
-</div>
-
-
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+            background-color: lightblue;
+            color: white;
+            padding: 10px 20px;
+            margin: 2px 5px;
+            border-radius: 5px;
+            border: none;
+            text-decoration: none;
+        }
+    </style>
+    <!-- Kết thúc -->

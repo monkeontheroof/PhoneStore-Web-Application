@@ -1,0 +1,53 @@
+﻿@model Web_dienthoai.Models.TaiKhoanNV
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<<div class="wrapper">
+    <div class="profile-card js-profile-card">
+        <div class="profile-card__img">
+            <img src="~/images/delete.jpg" alt="profile card">
+        </div>
+
+        <div class="profile-card__cnt js-profile-cnt">
+            <h3>XÁC NHẬN XÓA THƯƠNG HIỆU NÀY?</h3>
+            <div class="profile-card__name">@Html.DisplayFor(model => model.NhanVien.Hoten)</div>
+            <div class="profile-card__txt">Mã Thương Hiệu: <strong>@Html.DisplayFor(model => model.Username)</strong> </div>
+
+
+            <div class="profile-card-ctr">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="profile-card-ctr">
+                        <input type="submit" value="Delete" class="btn profile-card__button button--orange" />
+                        <a class="profile-card__button button--blue" href="~/TaiKhoanNVs/Index">Trở về</a>
+                    </div>
+                }
+
+            </div>
+
+            <div class="profile-card-message js-message">
+                <form class="profile-card-form">
+                    <div class="profile-card-form__container">
+                        <textarea placeholder="Say something..."></textarea>
+                    </div>
+
+                    <div class="profile-card-form__bottom">
+                        <button class="profile-card__button button--blue js-message-close">
+                        </button>
+
+                        <button class="profile-card__button button--gray js-message-close">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+
+                <div class="profile-card__overlay js-message-close"></div>
+            </div>
+
+        </div>
+
+    </div>

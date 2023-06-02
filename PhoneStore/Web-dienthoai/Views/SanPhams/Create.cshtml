@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
 <br />
 <br />
 @if (TempData["ThongBaoSuccess"] != null)
@@ -42,13 +44,13 @@
 
             <div class="form-wrapper">
                 Thương hiệu (*):
-                @Html.DropDownList("MaTH", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                @Html.DropDownList("MaTH", null, htmlAttributes: new { @class = "form-control", required = "required", @id = "thDropdown"})
                 @Html.ValidationMessageFor(model => model.MaTH, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-wrapper">
                 Giá tiền (*):
-                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control", required = "required", type = "number" } })
                 @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
             </div>
 
@@ -72,3 +74,9 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#thDropdown").chosen();
+    });
+</script>

@@ -17,17 +17,33 @@ namespace Web_dienthoai.Controllers
         QLDienThoaiEntities db = new QLDienThoaiEntities();
 
         // GET: PhoneStore
-        public ActionResult Index(string s)
+        public ActionResult Index(string currentFilter, string s, int? page)
         {
 
-            var sanpham = from sp in db.SanPhams select sp;
+            int pageSize = 15;
+            int pageNum = (page ?? 1);
+
+            if (s != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                s = currentFilter;
+            }
+
+            var sanPhams = from l in db.SanPhams
+                           select l;
 
             if (!String.IsNullOrEmpty(s))
             {
-                sanpham = sanpham.Where(sp => sp.TenSP.Contains(s) ||
-                                        sp.ThuongHieu.TenTH.Contains(s));
+                sanPhams = sanPhams.Where(i => i.MaSP.Contains(s) || i.ThuongHieu.TenTH.Contains(s) || i.TenSP.Contains(s) || i.Gia.ToString().Contains(s));
             }
-            return View(sanpham);
+            ViewBag.CurrentFilter = s;
+
+            sanPhams = sanPhams.OrderBy(id => id.Gia);
+
+            return View(sanPhams.ToPagedList(pageNum, pageSize));
         }
 
 
@@ -37,18 +53,20 @@ namespace Web_dienthoai.Controllers
             return PartialView(dsDT);
         }
 
-        [Route("PhoneStore/SPTheoHang/{MaTH}&{s}")]
-        public ActionResult SPTheoHang(string MaTH, string s)
+
+        public ActionResult SPTheoHang(string MaTH, int? page)
         {
             var sanpham = from sp in db.SanPhams.Where(d => d.MaTH.Contains(MaTH))
                           select sp;
-            if (!String.IsNullOrEmpty(s))
-            {
-                sanpham = sanpham.Where(sp => sp.TenSP.Contains(s) && sp.MaTH == MaTH);
-            }
+            
+            int pageSize = 9;
+            int pageNum = (page ?? 1);
+
             var tenTH = db.ThuongHieux.Find(MaTH);
             ViewBag.HangDT = tenTH.TenTH;
-            return View(sanpham);
+
+            sanpham = sanpham.OrderBy(s => s.Gia);
+            return View(sanpham.ToPagedList(pageNum, pageSize));
         }
 
         

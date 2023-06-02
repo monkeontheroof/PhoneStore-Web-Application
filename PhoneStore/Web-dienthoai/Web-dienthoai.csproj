@@ -142,6 +142,7 @@
     <Compile Include="Controllers\NhanViensController.cs" />
     <Compile Include="Controllers\PhoneStoreController.cs" />
     <Compile Include="Controllers\SanPhamsController.cs" />
+    <Compile Include="Controllers\TaiKhoanNVsController.cs" />
     <Compile Include="Controllers\ThongSoesController.cs" />
     <Compile Include="Controllers\ThuongHieuxController.cs" />
     <Compile Include="Global.asax.cs">
@@ -246,6 +247,7 @@
     <Content Include="Assets\Login\vendor\tilt\tilt.jquery.min.js" />
     <Content Include="Assets\Profile\datail.css" />
     <Content Include="Content\admin.css" />
+    <Content Include="Content\bootstrap-chosen.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -262,6 +264,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen-sprite.png" />
     <Content Include="Content\custom-accordion.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\DashboardContent.css" />
@@ -971,15 +975,19 @@
     <Content Include="Models\PhoneStoreModel.edmx.diagram">
       <DependentUpon>PhoneStoreModel.edmx</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-3.6.4.intellisense.js" />
+    <Content Include="Content\bootstrap-chosen.scss" />
+    <Content Include="Content\bootstrap-chosen.less" />
     <Content Include="Scripts\chart1.js" />
+    <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\custom-accordion.js" />
-    <Content Include="Scripts\jquery-3.6.4.js" />
-    <Content Include="Scripts\jquery-3.6.4.min.js" />
-    <Content Include="Scripts\jquery-3.6.4.slim.js" />
-    <Content Include="Scripts\jquery-3.6.4.slim.min.js" />
-    <Content Include="Scripts\jquery-3.6.4.slim.min.map" />
-    <Content Include="Scripts\jquery-3.6.4.min.map" />
+    <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.0.js" />
+    <Content Include="Scripts\jquery-3.7.0.min.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1012,12 +1020,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
-    <Content Include="Views\Home\Home.cshtml" />
-    <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\PhoneStore\Index.cshtml" />
     <Content Include="Views\PhoneStore\LayHangDT.cshtml" />
     <Content Include="Views\PhoneStore\SPTheoHang.cshtml" />
@@ -1181,6 +1184,11 @@
     <Content Include="Views\NguoiDung\LichSuMuaHang.cshtml" />
     <Content Include="Views\NguoiDung\XacNhanHuyDon.cshtml" />
     <Content Include="Views\DonHangs\DonHangDaHuy.cshtml" />
+    <Content Include="Views\TaiKhoanNVs\Create.cshtml" />
+    <Content Include="Views\TaiKhoanNVs\Delete.cshtml" />
+    <Content Include="Views\TaiKhoanNVs\Details.cshtml" />
+    <Content Include="Views\TaiKhoanNVs\Edit.cshtml" />
+    <Content Include="Views\TaiKhoanNVs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

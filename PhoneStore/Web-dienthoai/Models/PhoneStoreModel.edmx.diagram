@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a09ceacee38848f6949b64efd3dc200c" Name="Diagram1">
+      <Diagram DiagramId="a09ceacee38848f6949b64efd3dc200c" Name="Diagram1" ZoomLevel="95">
         <EntityTypeShape EntityType="db_PhoneStoreModel.ChiTietDH" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_PhoneStoreModel.DonHang" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_PhoneStoreModel.HinhSP" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_PhoneStoreModel.KhachHang" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_PhoneStoreModel.Mau" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_PhoneStoreModel.NhanVien" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_PhoneStoreModel.SanPham" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_PhoneStoreModel.TaiKhoanNV" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_PhoneStoreModel.ThongSo" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_PhoneStoreModel.ThuongHieu" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PhoneStoreModel.DonHang" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PhoneStoreModel.HinhSP" Width="1.5" PointX="10.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PhoneStoreModel.KhachHang" Width="1.5" PointX="0.625" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PhoneStoreModel.Mau" Width="1.5" PointX="8" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PhoneStoreModel.NhanVien" Width="1.5" PointX="5.875" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PhoneStoreModel.SanPham" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PhoneStoreModel.TaiKhoanNV" Width="1.5" PointX="3.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PhoneStoreModel.ThongSo" Width="1.5" PointX="6.125" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PhoneStoreModel.ThuongHieu" Width="1.5" PointX="3.125" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="db_PhoneStoreModel.FK_ChiTietDH_DonHang" ManuallyRouted="false" />
         <AssociationConnector Association="db_PhoneStoreModel.FK_ChiTietDH_SanPham" ManuallyRouted="false" />
         <AssociationConnector Association="db_PhoneStoreModel.FK_DonHang_KhachHang" ManuallyRouted="false" />
