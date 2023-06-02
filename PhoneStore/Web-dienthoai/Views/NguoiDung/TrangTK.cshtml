@@ -1,0 +1,44 @@
+﻿@using Web_dienthoai.Models
+@model KhachHang
+
+@{
+    ViewBag.Title = "TrangTK";
+    Layout = "~/Views/Shared/_MasterLayout2.cshtml";
+    KhachHang kh = Session["KhachHang"] as KhachHang;
+}
+
+<link rel="stylesheet" href="~/Content/Image.css" />
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+
+<body>
+
+    @*<h2 class="white-text"> TenTK:@kh.TenKH</h2>*@
+
+    <br />
+    <div class="logo-container" style="text-align:center; ">
+        <img src="~/Images/user_temp.jpg" alt="Logo" style=" width: 20%; height: auto; display:inline-block;">
+    </div>
+
+    <br />
+
+    <div class="bg-primary text-light" style="margin-top: 5px; padding: 5px; background-color: white; margin-left: 40%; margin-right: 40%;  border-radius: 10px; text-align:center;">
+        Tên tài khoản: @kh.Hoten  @Html.ActionLink(" ", "TrangThongTinTK", "NguoiDung", null, new { @class = "text-dark text-decoration-none" })
+    </div>
+
+    <div class="bg-primary" style="margin-top: 5px; padding: 5px; background-color: white; margin-left: 40%; margin-right: 40%; border-radius: 10px; text-align: center; ">
+        @Html.ActionLink("Tài Khoản", "TrangThongTinTK", "NguoiDung", null, new { @class = "text-light text-decoration-none" })
+    </div>
+
+
+    <div class="bg-primary" style="margin-top: 5px; padding: 5px; background-color: white; margin-left: 40%; margin-right: 40%; border-radius: 10px; text-align: center; ">
+        @Html.ActionLink("Lịch Sử Mua Hàng", "LichSuMuaHang", "NguoiDung", new { id = kh.MaKH }, new { @class = "text-light text-decoration-none" })
+
+    </div>
+    <br />
+    <div style="text-align:center">
+        @Html.ActionLink("Đăng Xuất", "DangXuat", "NguoiDung", null, new { @class = "btn btn-primary" })
+    </div>
+
+
+
+</body>

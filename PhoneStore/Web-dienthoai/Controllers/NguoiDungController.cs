@@ -114,5 +114,86 @@ namespace Web_dienthoai.Controllers
             } else
                 return View();
         }
+
+        public ActionResult UserPartial()
+
+        {
+            var kh = Session["KhachHang"] as KhachHang;
+            if (kh != null) ViewBag.name = kh.Hoten.ToString();
+            else ViewBag.name = "";
+
+
+            return PartialView();
+        }
+
+        public ActionResult TrangTK() /*trang taikhoan khi link vao taikhoan*/
+        {
+            var kh = Session["KhachHang"] as KhachHang;
+            if (kh == null)
+            {
+                return RedirectToAction("DangNhap");
+            }
+            return View(kh);
+        }
+
+        public ActionResult TrangThongTinTK() /*trang thong tin ca nhan */
+        {
+            var kh = Session["KhachHang"] as KhachHang;
+            if (kh == null)
+            {
+                return RedirectToAction("DangNhap");
+            }
+            return View(kh);
+        }
+
+        public ActionResult LichSuMuaHang()
+        {
+            var kh = Session["KhachHang"] as KhachHang;
+            if (kh != null)
+            {
+                var listDonhang = db.DonHangs.Where(dh => dh.MaKH == kh.MaKH).ToList();
+                List<Itemdonhang> listdh = new List<Itemdonhang>();
+                foreach(var d in listDonhang)
+                {
+                    Itemdonhang dh = new Itemdonhang(d.MaDH);
+                    listdh.Add(dh);
+                }
+                return View(listdh);
+            }
+            else
+                return View("TrangTK");
+        }
+
+        private int TinhTongSL(int MaDH)
+        {
+            int tongSL = 0;
+            var donhang = db.ChiTietDHs.Where(d => d.MaDH == MaDH).ToList();
+            if(donhang.Count() > 0)
+            {
+                tongSL = (int)donhang.Sum(c => c.SoLuong);
+            }
+            return tongSL;
+        }
+
+        public ActionResult HuyDon(long id)
+        {
+            DonHang dh = db.DonHangs.FirstOrDefault(s => s.MaDH == id);
+            if (dh.TinhTrang == "Chờ Duyệt")
+            {
+                dh.TinhTrang = "Hủy";
+                db.SaveChanges();
+                ViewBag.thongbao = "Hủy đơn hàng thành công";
+                return RedirectToAction("LichSuMuaHang");
+            }
+            ViewBag.thongbao = "Quý khách có thể tiếp tục mua hàng!";
+            return RedirectToAction("LichSuMuaHang");
+        }
+        public ActionResult XacNhanHuyDon(long madh)
+        {
+            var kh = Session["KhachHang"] as KhachHang;
+            ViewBag.makh = kh.MaKH;
+            ViewBag.madh = madh;
+            return View();
+        }
     }
 }
