@@ -157,6 +157,7 @@
     <Compile Include="Models\HinhSP.cs">
       <DependentUpon>PhoneStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Itemdonhang.cs" />
     <Compile Include="Models\KhachHang.cs">
       <DependentUpon>PhoneStoreModel.tt</DependentUpon>
     </Compile>
@@ -751,6 +752,7 @@
     <Content Include="Images\slideshow-3.jpg" />
     <Content Include="Images\tien.jpg" />
     <Content Include="Images\user.png" />
+    <Content Include="Images\user_temp.jpg" />
     <Content Include="Images\xe.png" />
     <Content Include="Images\xe1.png" />
     <Content Include="Models\PhoneStoreModel.Context.tt">
@@ -1173,6 +1175,12 @@
     <Content Include="Views\GioHang\DatHangThanhCong.cshtml" />
     <Content Include="Views\GioHang\CauHoiDKTK.cshtml" />
     <Content Include="Views\GioHang\ThongTinDKTK.cshtml" />
+    <Content Include="Views\NguoiDung\UserPartial.cshtml" />
+    <Content Include="Views\NguoiDung\TrangTK.cshtml" />
+    <Content Include="Views\NguoiDung\TrangThongTinTK.cshtml" />
+    <Content Include="Views\NguoiDung\LichSuMuaHang.cshtml" />
+    <Content Include="Views\NguoiDung\XacNhanHuyDon.cshtml" />
+    <Content Include="Views\DonHangs\DonHangDaHuy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -76,6 +76,36 @@ namespace Web_dienthoai.Controllers
             return View(donHangs.ToPagedList(pageNum, pageSize));
         }
 
+        public ActionResult DonHangDaHuy(string currentFilter, string s, int? page)
+        {
+            if (Session["Admin"] == null)
+                return RedirectToAction("Login", "Admin");
+
+
+            int pageSize = 7;
+            int pageNum = (page ?? 1);
+
+            if (s != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                s = currentFilter;
+            }
+
+            var donHangs = from l in db.DonHangs
+                           select l;
+            donHangs = donHangs.Where(i => i.TinhTrang.Contains("Hủy"));
+            if (!String.IsNullOrEmpty(s))
+            {
+                donHangs = donHangs.Where(id => id.MaDH.ToString().Contains(s) || id.TenNguoiNhan.Contains(s) || id.NgayDH.ToString().Contains(s) || id.SDTnhan.ToString().Contains(s));
+            }
+
+            donHangs = donHangs.OrderBy(i => i.NgayDH);
+            return View(donHangs.ToPagedList(pageNum, pageSize));
+        }
+
         // GET: DonHangs/Details/5
         public ActionResult Details(long? id)
         {
@@ -210,6 +240,11 @@ namespace Web_dienthoai.Controllers
         public ActionResult DeleteConfirmed(long id)
         {
             DonHang donHang = db.DonHangs.Find(id);
+            var ctdonhang = db.ChiTietDHs.Where(c => c.MaDH == donHang.MaDH).ToList();
+            foreach (var c in ctdonhang)
+            {
+                db.ChiTietDHs.Remove(c);
+            }
             db.DonHangs.Remove(donHang);
             db.SaveChanges();
             return RedirectToAction("Index");

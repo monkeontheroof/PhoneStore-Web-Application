@@ -34,44 +34,46 @@
             <i class="fa fa-search"></i>
         </div>*@
 
-        <div class="">
-            <i style="margin-right:5px">@Html.Action("GioHangPartial", "GioHang")</i>
             @if (Session["KhachHang"] != null)
             {
-                <a class="thin-text" href="@Url.Action("HoSo", "NguoiDung")"
-                   style="text-decoration: none; color: black; font-weight: bold;">
-                    <img style="width:30px;height:30px" src="~/Images/user.png" /> @ViewBag.name
-                </a>
-                <a class="thin-text" href="@Url.Action("Logout", "NguoiDung")"
-                   style="text-decoration: none; color: black; font-weight: bold;">
-                    <i class="fa fa-sign-out"></i>
-                </a>
+                <div class="">
+                    <i style="margin-right:5px">@Html.Action("GioHangPartial", "GioHang")</i>
+                    <i>@Html.Action("UserPartial", "NguoiDung")</i>
+                    <a class="thin-text" href="@Url.Action("Logout", "NguoiDung")"
+                       style="text-decoration: none; color: black; font-weight: bold;">
+                        <i class="fa fa-sign-out"></i>
+                    </a>
+                </div>
+
             }
             else
             {
-                <a class="thin-text" href="@Url.Action("DangNhap", "NguoiDung")"
-                   style="text-decoration: none; color: black; font-weight: bold;">
-                    <img style="width:30px;height:30px" src="~/Images/user.png" /> @ViewBag.name
-                </a>
-            }
+        <div>
+            <i style="margin-right:5px">@Html.Action("GioHangPartial", "GioHang")</i>
+            <a class="thin-text" href="@Url.Action("DangNhap", "NguoiDung")"
+               style="text-decoration: none; color: black; font-weight: bold;">
+                <img style="width:30px;height:30px" src="~/Images/user.png" /> @ViewBag.name
+            </a>
         </div>
+            }
+
 
             @*@if (Session["KhachHang"] != null)
-            {
-                <div class="ml-auto user-profile">
-                    <a href="@Url.Action("HoSo", "NguoiDung")"><i class="fa fa-user"></i></a>
-                </div>
+        {
+            <div class="ml-auto user-profile">
+                <a href="@Url.Action("HoSo", "NguoiDung")"><i class="fa fa-user"></i></a>
+            </div>
 
-                <div class="ml-auto user-profile">
-                    <a href="@Url.Action("Logout", "NguoiDung")"><i class="fa fa-sign-out"></i></a>
-                </div>
-            }
-            else
-            {
-                <div class="user-profile">
-                    <a href="@Url.Action("DangNhap", "NguoiDung")"><i class="fa fa-user"></i></a>
-                </div>
-            }*@
+            <div class="ml-auto user-profile">
+                <a href="@Url.Action("Logout", "NguoiDung")"><i class="fa fa-sign-out"></i></a>
+            </div>
+        }
+        else
+        {
+            <div class="user-profile">
+                <a href="@Url.Action("DangNhap", "NguoiDung")"><i class="fa fa-user"></i></a>
+            </div>
+        }*@
 
         </div>
 
