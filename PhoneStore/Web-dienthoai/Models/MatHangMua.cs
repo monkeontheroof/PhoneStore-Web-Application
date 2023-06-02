@@ -31,6 +31,7 @@ namespace Web_dienthoai.Models
         {
             this.IdSP = IdSP;
             var phone = db.SanPhams.Single(s => s.IdSP == this.IdSP);
+            this.MaSP = phone.MaSP;
             this.TenSP = phone.TenSP;
             this.DonGia = double.Parse(phone.Gia.ToString());
             this.SoLuong = 1;

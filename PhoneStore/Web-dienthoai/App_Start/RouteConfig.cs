@@ -18,6 +18,7 @@ namespace Web_dienthoai
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "PhoneStore", action = "Index", id = UrlParameter.Optional }
             );
+
         }
     }
 }

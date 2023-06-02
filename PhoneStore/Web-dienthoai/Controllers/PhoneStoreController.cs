@@ -7,6 +7,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Web_dienthoai.Models;
 
 namespace Web_dienthoai.Controllers
@@ -36,11 +37,15 @@ namespace Web_dienthoai.Controllers
             return PartialView(dsDT);
         }
 
-
-        public ActionResult SPTheoHang(string MaTH)
+        [Route("PhoneStore/SPTheoHang/{MaTH}&{s}")]
+        public ActionResult SPTheoHang(string MaTH, string s)
         {
-            var sanpham = db.SanPhams.Where(id => id.MaTH == MaTH).ToList();
-
+            var sanpham = from sp in db.SanPhams.Where(d => d.MaTH.Contains(MaTH))
+                          select sp;
+            if (!String.IsNullOrEmpty(s))
+            {
+                sanpham = sanpham.Where(sp => sp.TenSP.Contains(s) && sp.MaTH == MaTH);
+            }
             var tenTH = db.ThuongHieux.Find(MaTH);
             ViewBag.HangDT = tenTH.TenTH;
             return View(sanpham);
